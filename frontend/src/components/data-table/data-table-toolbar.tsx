@@ -6,7 +6,6 @@ import { Download, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { priorities } from "@/data/data";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { DataTableViewOptions } from "./data-table-view-options";
 import { DeleteStudentsDialog } from "../delete-students-dialog";
@@ -15,20 +14,26 @@ import { exportTableToCSV } from "@/lib/export";
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   fields: string[];
+  classNames: string[];
 }
 
-export function DataTableToolbar<TData>({ table, fields }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({
+  table,
+  fields,
+  classNames,
+}: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Filter students..."
-          value={(table.getColumn("firstName")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("firstName")?.setFilterValue(event.target.value)}
+          placeholder="Search for students..."
+          value={(table.getState().globalFilter as string) ?? ""}
+          onChange={(event) => table.setGlobalFilter(event.target.value)}
           className="h-8 w-[150px] lg:w-[250px]"
         />
+
         {table.getColumn("field") && (
           <DataTableFacetedFilter
             column={table.getColumn("field")}
@@ -36,11 +41,11 @@ export function DataTableToolbar<TData>({ table, fields }: DataTableToolbarProps
             options={fields.map((field) => ({ value: field, label: field }))}
           />
         )}
-        {table.getColumn("average") && (
+        {table.getColumn("className") && (
           <DataTableFacetedFilter
-            column={table.getColumn("average")}
-            title="Average"
-            options={priorities}
+            column={table.getColumn("className")}
+            title="Class"
+            options={classNames.map((className) => ({ value: className, label: className }))}
           />
         )}
         {isFiltered && (
@@ -67,7 +72,9 @@ export function DataTableToolbar<TData>({ table, fields }: DataTableToolbarProps
               <X />
             </Button>
             <DeleteStudentsDialog
-              students={table.getFilteredSelectedRowModel().rows.map((row) => row.original)}
+              students={
+                table.getFilteredSelectedRowModel().rows.map((row) => row.original) as Student[]
+              }
               onSuccess={() => table.toggleAllRowsSelected(false)}
             />
           </>

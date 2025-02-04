@@ -16,14 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Sheet,
   SheetClose,
   SheetContent,
@@ -32,15 +24,22 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { updateStudentSchema } from "@/lib/validation";
 import { Input } from "@/components/ui/input";
+import { ComboboxForm } from "@/components/ui/combobox-form";
+import { updateStudentSchema } from "@/lib/validation";
 
 interface UpdateStudentSheetProps extends React.ComponentPropsWithRef<typeof Sheet> {
   student: Student | null;
   fields: string[];
+  classNames: string[];
 }
 
-export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentSheetProps) {
+export function UpdateStudentSheet({
+  student,
+  fields,
+  classNames,
+  ...props
+}: UpdateStudentSheetProps) {
   const [isUpdatePending, startUpdateTransition] = React.useTransition();
 
   const form = useForm<UpdateStudentSchema>({ resolver: zodResolver(updateStudentSchema) });
@@ -143,45 +142,8 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="className"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Class Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Class Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="field"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Field</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="capitalize">
-                        <SelectValue placeholder="Select a field" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectGroup>
-                        {fields.map((item) => (
-                          <SelectItem key={item} value={item} className="capitalize">
-                            {item}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <ComboboxForm form={form} name="className" label="Class" items={classNames} />
+            <ComboboxForm form={form} name="field" label="Field" items={fields} />
             <SheetFooter className="gap-2 mt-auto pt-2 sm:space-x-0">
               <SheetClose asChild>
                 <Button type="button" variant="outline">

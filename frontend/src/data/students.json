@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "cne": "R371635300",
+    "firstName": "Matilda",
+    "lastName": "Upton",
+    "email": "Alexandro.Abshire33@gmail.com",
+    "className": "LICENCE",
+    "field": "History",
+    "average": 11.43
+  },
+  {
+    "id": 2,
+    "cne": "R499675152",
+    "firstName": "Reid",
+    "lastName": "Sipes",
+    "email": "Alfred.Kemmer@yahoo.com",
+    "className": "MASTER",
+    "field": "Art",
+    "average": 16.85
+  },
+  {
+    "id": 3,
+    "cne": "H551814040",
+    "firstName": "Tamia",
+    "lastName": "Morissette",
+    "email": "Josiane98@hotmail.com",
+    "className": "ENGINEERING",
+    "field": "Art",
+    "average": 14.28
+  },
+  {
+    "id": 4,
+    "cne": "T442021396",
+    "firstName": "Frances",
+    "lastName": "Mertz",
+    "email": "Susana.Lehner97@hotmail.com",
+    "className": "BACHELOR",
+    "field": "Music",
+    "average": 19.61
+  },
+  {
+    "id": 5,
+    "cne": "N900464918",
+    "firstName": "Abagail",
+    "lastName": "Lakin",
+    "email": "Estevan.Block@gmail.com",
+    "className": "BACHELOR",
+    "field": "Music",
+    "average": 19.61
+  },
+  {
+    "id": 6,
+    "cne": "J840231565",
+    "firstName": "Abbey",
+    "lastName": "Brakus-Nitzsche",
+    "email": "Laury81@hotmail.com",
+    "className": "BACHELOR",
+    "field": "Art",
+    "average": 11.29
+  },
+  {
+    "id": 7,
+    "cne": "T965481528",
+    "firstName": "Augustine",
+    "lastName": "Ledner-Fahey",
+    "email": "Vickie.Towne0@hotmail.com",
+    "className": "BACHELOR",
+    "field": "Science",
+    "average": 19.64
+  },
+  {
+    "id": 8,
+    "cne": "V613238756",
+    "firstName": "Blair",
+    "lastName": "Davis",
+    "email": "Elmo10@hotmail.com",
+    "className": "PHD",
+    "field": "Science",
+    "average": 12.34
+  },
+  {
+    "id": 9,
+    "cne": "S844311174",
+    "firstName": "Casey",
+    "lastName": "Kreiger",
+    "email": "Eryn_Rodriguez89@yahoo.com",
+    "className": "LICENCE",
+    "field": "Science",
+    "average": 18.28
+  },
+  {
+    "id": 10,
+    "cne": "K143537399",
+    "firstName": "Valentin",
+    "lastName": "Toy",
+    "email": "Emilie55@hotmail.com",
+    "className": "LICENCE",
+    "field": "History",
+    "average": 13.78
+  },
+  {
+    "id": 11,
+    "cne": "U057114250",
+    "firstName": "Madisyn",
+    "lastName": "Herman",
+    "email": "Genevieve.Rippin0@yahoo.com",
+    "className": "PHD",
+    "field": "Physical Education",
+    "average": 12.1
+  },
+  {
+    "id": 12,
+    "cne": "Y637180134",
+    "firstName": "Henry",
+    "lastName": "Hills",
+    "email": "Antonietta_Howe@gmail.com",
+    "className": "ENGINEERING",
+    "field": "History",
+    "average": 12.66
+  },
+  {
+    "id": 13,
+    "cne": "C920229348",
+    "firstName": "Rachael",
+    "lastName": "Pagac",
+    "email": "Athena83@hotmail.com",
+    "className": "DUT",
+    "field": "Art",
+    "average": 16.48
+  },
+  {
+    "id": 14,
+    "cne": "U817377965",
+    "firstName": "Onie",
+    "lastName": "Simonis",
+    "email": "Wallace_Rempel21@hotmail.com",
+    "className": "DUT",
+    "field": "Literature",
+    "average": 18.88
+  },
+  {
+    "id": 15,
+    "cne": "B338262968",
+    "firstName": "Drew",
+    "lastName": "Prohaska",
+    "email": "Maribel90@yahoo.com",
+    "className": "LICENCE",
+    "field": "Physical Education",
+    "average": 19.37
+  },
+  {
+    "id": 16,
+    "cne": "O385352678",
+    "firstName": "Davonte",
+    "lastName": "Graham",
+    "email": "Alia.Cassin89@hotmail.com",
+    "className": "DUT",
+    "field": "Music",
+    "average": 14.39
+  },
+  {
+    "id": 17,
+    "cne": "M812844572",
+    "firstName": "Howell",
+    "lastName": "Pfannerstill-Vandervort",
+    "email": "Dexter_Jerde@hotmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 18.13
+  },
+  {
+    "id": 18,
+    "cne": "Q199859705",
+    "firstName": "Enid",
+    "lastName": "DuBuque",
+    "email": "Joshuah.McKenzie81@hotmail.com",
+    "className": "LICENCE",
+    "field": "Mathematics",
+    "average": 16.03
+  },
+  {
+    "id": 19,
+    "cne": "D785540268",
+    "firstName": "Mavis",
+    "lastName": "Wilderman",
+    "email": "Ryley56@hotmail.com",
+    "className": "LICENCE",
+    "field": "Science",
+    "average": 14.78
+  },
+  {
+    "id": 20,
+    "cne": "J025713945",
+    "firstName": "Cole",
+    "lastName": "Casper",
+    "email": "Wilton.Huels87@yahoo.com",
+    "className": "ENGINEERING",
+    "field": "History",
+    "average": 15.05
+  },
+  {
+    "id": 21,
+    "cne": "X729014907",
+    "firstName": "Dillan",
+    "lastName": "Nitzsche",
+    "email": "Terrill.Swaniawski@gmail.com",
+    "className": "PHD",
+    "field": "Science",
+    "average": 12.81
+  },
+  {
+    "id": 22,
+    "cne": "U017036087",
+    "firstName": "Elvis",
+    "lastName": "Brown",
+    "email": "Guadalupe67@gmail.com",
+    "className": "PHD",
+    "field": "Science",
+    "average": 14.78
+  },
+  {
+    "id": 23,
+    "cne": "U524776303",
+    "firstName": "Keira",
+    "lastName": "Beatty",
+    "email": "Augusta86@hotmail.com",
+    "className": "PHD",
+    "field": "History",
+    "average": 14.61
+  },
+  {
+    "id": 24,
+    "cne": "G011949546",
+    "firstName": "Jade",
+    "lastName": "Pagac",
+    "email": "Cade_Nader65@hotmail.com",
+    "className": "ENGINEERING",
+    "field": "Music",
+    "average": 13.99
+  },
+  {
+    "id": 25,
+    "cne": "O504779167",
+    "firstName": "Kaleb",
+    "lastName": "Volkman",
+    "email": "Sheridan25@yahoo.com",
+    "className": "LICENCE",
+    "field": "Mathematics",
+    "average": 16.92
+  },
+  {
+    "id": 26,
+    "cne": "T047710186",
+    "firstName": "Lon",
+    "lastName": "Schuppe",
+    "email": "Ismael48@gmail.com",
+    "className": "PHD",
+    "field": "History",
+    "average": 18.64
+  },
+  {
+    "id": 27,
+    "cne": "S656743169",
+    "firstName": "Santos",
+    "lastName": "Nikolaus",
+    "email": "Lonzo_Lesch91@gmail.com",
+    "className": "PHD",
+    "field": "Mathematics",
+    "average": 14.47
+  },
+  {
+    "id": 28,
+    "cne": "F812898727",
+    "firstName": "Antone",
+    "lastName": "Orn",
+    "email": "Austin.Adams95@gmail.com",
+    "className": "MASTER",
+    "field": "Art",
+    "average": 13.79
+  },
+  {
+    "id": 29,
+    "cne": "I444313143",
+    "firstName": "Minnie",
+    "lastName": "Wyman",
+    "email": "Rozella_Brakus11@yahoo.com",
+    "className": "DUT",
+    "field": "Physical Education",
+    "average": 18.3
+  },
+  {
+    "id": 30,
+    "cne": "S392945472",
+    "firstName": "Tyshawn",
+    "lastName": "Hammes",
+    "email": "Jennie37@yahoo.com",
+    "className": "MASTER",
+    "field": "Physical Education",
+    "average": 10.25
+  },
+  {
+    "id": 31,
+    "cne": "Q251174439",
+    "firstName": "Tillman",
+    "lastName": "Lueilwitz",
+    "email": "Kraig.Wiza@yahoo.com",
+    "className": "ENGINEERING",
+    "field": "Science",
+    "average": 11.63
+  },
+  {
+    "id": 32,
+    "cne": "G446991107",
+    "firstName": "Nickolas",
+    "lastName": "Zemlak",
+    "email": "Lily.Doyle@hotmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 13.6
+  },
+  {
+    "id": 33,
+    "cne": "T115236012",
+    "firstName": "Zora",
+    "lastName": "Ernser",
+    "email": "Margaretta_Weissnat@yahoo.com",
+    "className": "ENGINEERING",
+    "field": "Literature",
+    "average": 19.24
+  },
+  {
+    "id": 34,
+    "cne": "A320004423",
+    "firstName": "Josiah",
+    "lastName": "Hessel",
+    "email": "Elmore.Effertz14@gmail.com",
+    "className": "MASTER",
+    "field": "History",
+    "average": 19.64
+  },
+  {
+    "id": 35,
+    "cne": "U772877995",
+    "firstName": "Emory",
+    "lastName": "Morissette",
+    "email": "Tyrese_White@gmail.com",
+    "className": "BACHELOR",
+    "field": "Music",
+    "average": 18.36
+  },
+  {
+    "id": 36,
+    "cne": "N978125636",
+    "firstName": "Napoleon",
+    "lastName": "Schmidt",
+    "email": "Lon69@hotmail.com",
+    "className": "LICENCE",
+    "field": "Physical Education",
+    "average": 17.73
+  },
+  {
+    "id": 37,
+    "cne": "Z733573204",
+    "firstName": "Marion",
+    "lastName": "Hills",
+    "email": "Claude88@hotmail.com",
+    "className": "DUT",
+    "field": "Literature",
+    "average": 11.4
+  },
+  {
+    "id": 38,
+    "cne": "C344729890",
+    "firstName": "Bert",
+    "lastName": "Stroman",
+    "email": "Wilfrid_Rath48@yahoo.com",
+    "className": "LICENCE",
+    "field": "Music",
+    "average": 11.12
+  },
+  {
+    "id": 39,
+    "cne": "M106601714",
+    "firstName": "Antonetta",
+    "lastName": "Rempel",
+    "email": "Joanny_Buckridge@gmail.com",
+    "className": "PHD",
+    "field": "Mathematics",
+    "average": 19.56
+  },
+  {
+    "id": 40,
+    "cne": "Q354645522",
+    "firstName": "Amiya",
+    "lastName": "Greenholt-Okuneva",
+    "email": "Margret44@hotmail.com",
+    "className": "LICENCE",
+    "field": "Mathematics",
+    "average": 16.07
+  },
+  {
+    "id": 41,
+    "cne": "I863613295",
+    "firstName": "Nicolette",
+    "lastName": "DuBuque",
+    "email": "Graciela.Heidenreich@hotmail.com",
+    "className": "DUT",
+    "field": "Science",
+    "average": 15.31
+  },
+  {
+    "id": 42,
+    "cne": "X848417522",
+    "firstName": "Celestine",
+    "lastName": "Braun",
+    "email": "Sylvia88@yahoo.com",
+    "className": "LICENCE",
+    "field": "Art",
+    "average": 16.76
+  },
+  {
+    "id": 43,
+    "cne": "M730978668",
+    "firstName": "Alene",
+    "lastName": "Skiles",
+    "email": "Nestor_Feest@hotmail.com",
+    "className": "MASTER",
+    "field": "Art",
+    "average": 15.24
+  },
+  {
+    "id": 44,
+    "cne": "N514244173",
+    "firstName": "Johann",
+    "lastName": "Becker",
+    "email": "Saul.Quitzon@yahoo.com",
+    "className": "BACHELOR",
+    "field": "Mathematics",
+    "average": 13.63
+  },
+  {
+    "id": 45,
+    "cne": "B590494066",
+    "firstName": "Emile",
+    "lastName": "Reynolds",
+    "email": "Drew_Tillman-Bogisich@hotmail.com",
+    "className": "ENGINEERING",
+    "field": "Music",
+    "average": 16.53
+  },
+  {
+    "id": 46,
+    "cne": "Y756809745",
+    "firstName": "Laverne",
+    "lastName": "Greenholt",
+    "email": "Theodore_Kuvalis19@gmail.com",
+    "className": "LICENCE",
+    "field": "Literature",
+    "average": 13.53
+  },
+  {
+    "id": 47,
+    "cne": "W393949521",
+    "firstName": "Fausto",
+    "lastName": "Hayes",
+    "email": "Garrick_Wilderman98@hotmail.com",
+    "className": "ENGINEERING",
+    "field": "Physical Education",
+    "average": 18.69
+  },
+  {
+    "id": 48,
+    "cne": "Y013271675",
+    "firstName": "Arianna",
+    "lastName": "Kertzmann",
+    "email": "Sienna26@yahoo.com",
+    "className": "PHD",
+    "field": "Literature",
+    "average": 12.45
+  },
+  {
+    "id": 49,
+    "cne": "T805593200",
+    "firstName": "Myles",
+    "lastName": "McGlynn",
+    "email": "Norene46@gmail.com",
+    "className": "BACHELOR",
+    "field": "Physical Education",
+    "average": 18.48
+  },
+  {
+    "id": 50,
+    "cne": "U234486935",
+    "firstName": "Parker",
+    "lastName": "Padberg",
+    "email": "Trevion.Tremblay30@gmail.com",
+    "className": "MASTER",
+    "field": "Mathematics",
+    "average": 14.28
+  },
+  {
+    "id": 51,
+    "cne": "L338393363",
+    "firstName": "Tate",
+    "lastName": "Nitzsche",
+    "email": "Tyler.Abshire@gmail.com",
+    "className": "BACHELOR",
+    "field": "Art",
+    "average": 13.46
+  },
+  {
+    "id": 52,
+    "cne": "J597003580",
+    "firstName": "Isabella",
+    "lastName": "Murazik",
+    "email": "Tavares.Luettgen@hotmail.com",
+    "className": "DUT",
+    "field": "Science",
+    "average": 15.52
+  },
+  {
+    "id": 53,
+    "cne": "K516869549",
+    "firstName": "Janick",
+    "lastName": "Conroy",
+    "email": "Maryse49@gmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 18.31
+  },
+  {
+    "id": 54,
+    "cne": "D050064374",
+    "firstName": "Ray",
+    "lastName": "McGlynn",
+    "email": "Anya44@hotmail.com",
+    "className": "LICENCE",
+    "field": "History",
+    "average": 11.89
+  },
+  {
+    "id": 55,
+    "cne": "K914092410",
+    "firstName": "Grady",
+    "lastName": "Kerluke",
+    "email": "Chasity89@hotmail.com",
+    "className": "DUT",
+    "field": "Mathematics",
+    "average": 12.95
+  },
+  {
+    "id": 56,
+    "cne": "H450099965",
+    "firstName": "Garfield",
+    "lastName": "Corwin",
+    "email": "Krystal90@hotmail.com",
+    "className": "DUT",
+    "field": "History",
+    "average": 13.88
+  },
+  {
+    "id": 57,
+    "cne": "H140928169",
+    "firstName": "Antonietta",
+    "lastName": "Wyman",
+    "email": "Roger79@gmail.com",
+    "className": "ENGINEERING",
+    "field": "Literature",
+    "average": 13.47
+  },
+  {
+    "id": 58,
+    "cne": "U143207472",
+    "firstName": "Anjali",
+    "lastName": "Pouros",
+    "email": "Cecelia.Beier97@gmail.com",
+    "className": "ENGINEERING",
+    "field": "Physical Education",
+    "average": 18.13
+  },
+  {
+    "id": 59,
+    "cne": "Z192994471",
+    "firstName": "Maxwell",
+    "lastName": "Pagac",
+    "email": "Doyle.Walter-Ritchie@yahoo.com",
+    "className": "MASTER",
+    "field": "Mathematics",
+    "average": 11.59
+  },
+  {
+    "id": 60,
+    "cne": "G156053471",
+    "firstName": "Otho",
+    "lastName": "Moen",
+    "email": "Eveline.Jerde70@gmail.com",
+    "className": "ENGINEERING",
+    "field": "Mathematics",
+    "average": 18.92
+  },
+  {
+    "id": 61,
+    "cne": "Q205710489",
+    "firstName": "Hobart",
+    "lastName": "Watsica",
+    "email": "Amir.Parisian86@gmail.com",
+    "className": "MASTER",
+    "field": "Physical Education",
+    "average": 19.66
+  },
+  {
+    "id": 62,
+    "cne": "T166454440",
+    "firstName": "Arden",
+    "lastName": "Cassin",
+    "email": "Jamarcus.Hansen@hotmail.com",
+    "className": "LICENCE",
+    "field": "Mathematics",
+    "average": 13.83
+  },
+  {
+    "id": 63,
+    "cne": "B585550044",
+    "firstName": "Rachael",
+    "lastName": "Koch",
+    "email": "Nettie37@gmail.com",
+    "className": "LICENCE",
+    "field": "Science",
+    "average": 16.25
+  },
+  {
+    "id": 64,
+    "cne": "G905223751",
+    "firstName": "Elsa",
+    "lastName": "Carter",
+    "email": "Wilbert39@gmail.com",
+    "className": "LICENCE",
+    "field": "Mathematics",
+    "average": 16.82
+  },
+  {
+    "id": 65,
+    "cne": "M536685098",
+    "firstName": "Abner",
+    "lastName": "Thiel",
+    "email": "Jasmin15@gmail.com",
+    "className": "MASTER",
+    "field": "Physical Education",
+    "average": 18.87
+  },
+  {
+    "id": 66,
+    "cne": "I381049319",
+    "firstName": "Jennifer",
+    "lastName": "Graham",
+    "email": "Jaeden_Schimmel78@hotmail.com",
+    "className": "LICENCE",
+    "field": "Physical Education",
+    "average": 12.02
+  },
+  {
+    "id": 67,
+    "cne": "B290567135",
+    "firstName": "Lamont",
+    "lastName": "Rau",
+    "email": "Ethyl98@hotmail.com",
+    "className": "PHD",
+    "field": "Music",
+    "average": 18.99
+  },
+  {
+    "id": 68,
+    "cne": "R243933706",
+    "firstName": "Garth",
+    "lastName": "Rodriguez",
+    "email": "Gavin_Bednar37@gmail.com",
+    "className": "MASTER",
+    "field": "Art",
+    "average": 15.67
+  },
+  {
+    "id": 69,
+    "cne": "V462755332",
+    "firstName": "Cecile",
+    "lastName": "Kovacek",
+    "email": "Lizzie_Olson@gmail.com",
+    "className": "ENGINEERING",
+    "field": "Music",
+    "average": 19.76
+  },
+  {
+    "id": 70,
+    "cne": "X494934127",
+    "firstName": "Jamel",
+    "lastName": "Greenholt-Morar",
+    "email": "Vicky_Baumbach56@yahoo.com",
+    "className": "MASTER",
+    "field": "Art",
+    "average": 15.06
+  },
+  {
+    "id": 71,
+    "cne": "P031021456",
+    "firstName": "Jessika",
+    "lastName": "Ziemann",
+    "email": "Madisen.Kassulke76@hotmail.com",
+    "className": "PHD",
+    "field": "Literature",
+    "average": 19.56
+  },
+  {
+    "id": 72,
+    "cne": "A942527635",
+    "firstName": "Maryse",
+    "lastName": "Lehner",
+    "email": "Greyson.Nienow49@hotmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 17.22
+  },
+  {
+    "id": 73,
+    "cne": "M413565135",
+    "firstName": "Loy",
+    "lastName": "Becker",
+    "email": "Anissa84@hotmail.com",
+    "className": "PHD",
+    "field": "Physical Education",
+    "average": 12.88
+  },
+  {
+    "id": 74,
+    "cne": "O377829685",
+    "firstName": "Hermina",
+    "lastName": "Kassulke",
+    "email": "Vito85@gmail.com",
+    "className": "MASTER",
+    "field": "Music",
+    "average": 16.52
+  },
+  {
+    "id": 75,
+    "cne": "N589855217",
+    "firstName": "Carmelo",
+    "lastName": "Hilpert",
+    "email": "Amira87@gmail.com",
+    "className": "DUT",
+    "field": "Music",
+    "average": 14.54
+  },
+  {
+    "id": 76,
+    "cne": "G200336522",
+    "firstName": "Noemie",
+    "lastName": "Steuber",
+    "email": "Beryl27@yahoo.com",
+    "className": "DUT",
+    "field": "Art",
+    "average": 17.94
+  },
+  {
+    "id": 77,
+    "cne": "L465945023",
+    "firstName": "Nelson",
+    "lastName": "Schaefer",
+    "email": "Ed.Littel@yahoo.com",
+    "className": "ENGINEERING",
+    "field": "Mathematics",
+    "average": 18.56
+  },
+  {
+    "id": 78,
+    "cne": "R045375621",
+    "firstName": "Flavie",
+    "lastName": "Mertz",
+    "email": "Harmony.Labadie@gmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 15.28
+  },
+  {
+    "id": 79,
+    "cne": "R589817610",
+    "firstName": "Susie",
+    "lastName": "Braun",
+    "email": "Eleanore2@hotmail.com",
+    "className": "LICENCE",
+    "field": "Science",
+    "average": 15.39
+  },
+  {
+    "id": 80,
+    "cne": "D954816030",
+    "firstName": "Angelo",
+    "lastName": "Jerde",
+    "email": "Jamaal11@yahoo.com",
+    "className": "PHD",
+    "field": "Mathematics",
+    "average": 17.8
+  },
+  {
+    "id": 81,
+    "cne": "Z270105944",
+    "firstName": "Mona",
+    "lastName": "Krajcik",
+    "email": "Reyna99@gmail.com",
+    "className": "PHD",
+    "field": "Literature",
+    "average": 13.71
+  },
+  {
+    "id": 82,
+    "cne": "M691089306",
+    "firstName": "Brenda",
+    "lastName": "Pfannerstill",
+    "email": "Ellis95@hotmail.com",
+    "className": "DUT",
+    "field": "History",
+    "average": 16.12
+  },
+  {
+    "id": 83,
+    "cne": "I479703492",
+    "firstName": "Tiara",
+    "lastName": "Littel",
+    "email": "Elinore1@hotmail.com",
+    "className": "DUT",
+    "field": "History",
+    "average": 16.27
+  },
+  {
+    "id": 84,
+    "cne": "A391034216",
+    "firstName": "Bridgette",
+    "lastName": "Ferry",
+    "email": "Elna_Goodwin14@gmail.com",
+    "className": "MASTER",
+    "field": "Music",
+    "average": 17.95
+  },
+  {
+    "id": 85,
+    "cne": "O093787762",
+    "firstName": "Gussie",
+    "lastName": "Howell",
+    "email": "Daphney.Reinger95@hotmail.com",
+    "className": "PHD",
+    "field": "Literature",
+    "average": 14.71
+  },
+  {
+    "id": 86,
+    "cne": "D289049807",
+    "firstName": "Aracely",
+    "lastName": "Reichert",
+    "email": "Patsy.Schiller@gmail.com",
+    "className": "LICENCE",
+    "field": "Science",
+    "average": 13.1
+  },
+  {
+    "id": 87,
+    "cne": "E287089300",
+    "firstName": "Julia",
+    "lastName": "Breitenberg",
+    "email": "Weston_Kessler@hotmail.com",
+    "className": "DUT",
+    "field": "Physical Education",
+    "average": 19.27
+  },
+  {
+    "id": 88,
+    "cne": "U290828930",
+    "firstName": "Jazlyn",
+    "lastName": "Kuhlman",
+    "email": "Jordi74@yahoo.com",
+    "className": "PHD",
+    "field": "Science",
+    "average": 17.96
+  },
+  {
+    "id": 89,
+    "cne": "C016230442",
+    "firstName": "Fausto",
+    "lastName": "Nader",
+    "email": "Oswald_Wisoky21@yahoo.com",
+    "className": "PHD",
+    "field": "Science",
+    "average": 13.38
+  },
+  {
+    "id": 90,
+    "cne": "R201533512",
+    "firstName": "Jevon",
+    "lastName": "Marquardt",
+    "email": "Khalid95@hotmail.com",
+    "className": "MASTER",
+    "field": "Physical Education",
+    "average": 19.7
+  },
+  {
+    "id": 91,
+    "cne": "S365070891",
+    "firstName": "Allan",
+    "lastName": "Stroman",
+    "email": "Dallas77@yahoo.com",
+    "className": "ENGINEERING",
+    "field": "Music",
+    "average": 10.32
+  },
+  {
+    "id": 92,
+    "cne": "C244915677",
+    "firstName": "Cara",
+    "lastName": "Jerde",
+    "email": "Dina_Murray@hotmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 17.47
+  },
+  {
+    "id": 93,
+    "cne": "C190837109",
+    "firstName": "Olaf",
+    "lastName": "Stoltenberg",
+    "email": "Opal.Ebert65@yahoo.com",
+    "className": "PHD",
+    "field": "Science",
+    "average": 19.81
+  },
+  {
+    "id": 94,
+    "cne": "C654665394",
+    "firstName": "Wallace",
+    "lastName": "Collier",
+    "email": "Callie_Streich@yahoo.com",
+    "className": "LICENCE",
+    "field": "Science",
+    "average": 12.46
+  },
+  {
+    "id": 95,
+    "cne": "D788005480",
+    "firstName": "Tierra",
+    "lastName": "Osinski",
+    "email": "Henri_Shields@gmail.com",
+    "className": "MASTER",
+    "field": "Literature",
+    "average": 14.61
+  },
+  {
+    "id": 96,
+    "cne": "M108395058",
+    "firstName": "Jabari",
+    "lastName": "Bartoletti",
+    "email": "Doris_Quitzon24@hotmail.com",
+    "className": "LICENCE",
+    "field": "Art",
+    "average": 15.09
+  },
+  {
+    "id": 97,
+    "cne": "Q855203104",
+    "firstName": "Raegan",
+    "lastName": "Jacobs",
+    "email": "Tate99@yahoo.com",
+    "className": "DUT",
+    "field": "Science",
+    "average": 14.42
+  },
+  {
+    "id": 98,
+    "cne": "F516180651",
+    "firstName": "Clark",
+    "lastName": "Kreiger",
+    "email": "Dax_Walter71@gmail.com",
+    "className": "MASTER",
+    "field": "Physical Education",
+    "average": 11.01
+  },
+  {
+    "id": 99,
+    "cne": "U169616235",
+    "firstName": "Seth",
+    "lastName": "Donnelly",
+    "email": "Brando.Bradtke17@yahoo.com",
+    "className": "BACHELOR",
+    "field": "Music",
+    "average": 14.19
+  },
+  {
+    "id": 100,
+    "cne": "Y030674291",
+    "firstName": "Laurine",
+    "lastName": "Prohaska",
+    "email": "Twila_Ledner90@yahoo.com",
+    "className": "ENGINEERING",
+    "field": "Music",
+    "average": 13.31
+  }
+]

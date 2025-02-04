@@ -22,19 +22,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Loader, UserPlus } from "lucide-react";
 import { createStudentSchema } from "@/lib/validation";
+import { ComboboxForm } from "./ui/combobox-form";
 
-export function NewStudentModal({ fields }: { fields: string[] }) {
+export function NewStudentModal({
+  fields,
+  classNames,
+}: {
+  fields: string[];
+  classNames: string[];
+}) {
   const [isCreatePending, startCreateTransition] = useTransition();
 
   const form = useForm<CreateStudentSchema>({
@@ -122,45 +121,8 @@ export function NewStudentModal({ fields }: { fields: string[] }) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="className"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Class Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Class Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-             <FormField
-              control={form.control}
-              name="field"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Field</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="capitalize">
-                        <SelectValue placeholder="Select a field" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectGroup>
-                        {fields.map((item) => (
-                          <SelectItem key={item} value={item} className="capitalize">
-                            {item}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <ComboboxForm form={form} name="className" label="Class" items={classNames} />
+            <ComboboxForm form={form} name="field" label="Field" items={fields} />
             <DialogFooter className="gap-2 pt-2 sm:space-x-0 col-span-2">
               <DialogClose asChild>
                 <Button type="button" variant="outline">

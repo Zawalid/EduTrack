@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   ColumnFiltersState,
+  FilterFn,
   SortingState,
   VisibilityState,
   flexRender,
@@ -30,24 +31,31 @@ import { getColumns } from "./data-table-columns";
 import { DeleteStudentsDialog } from "../delete-students-dialog";
 import { UpdateStudentSheet } from "../update-student-sheet";
 
-interface DataTableProps<TData> {
-  data: TData[];
+interface DataTableProps {
+  data: Student[];
   fields: string[];
+  classNames: string[];
 }
 
+const globalStudentFilter: FilterFn<Student> = (row, _, filterValue) => {
+  if (!filterValue) return true;
+  const search = filterValue.toLowerCase();
 
+  const firstName = (row.getValue("firstName") as string)?.toLowerCase() || "";
+  const lastName = (row.getValue("lastName") as string)?.toLowerCase() || "";
 
+  return firstName.includes(search) || lastName.includes(search);
+};
 
-export function DataTable<TData>({ data,fields }: DataTableProps<TData>) {
+export function DataTable({ data, fields, classNames }: DataTableProps) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = React.useState<string>(""); 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [rowAction, setRowAction] = React.useState<DataTableRowAction<Student> | null>(null);
 
   const columns = React.useMemo(() => getColumns({ setRowAction }), []);
-
-  
 
   const table = useReactTable({
     data,
@@ -57,11 +65,14 @@ export function DataTable<TData>({ data,fields }: DataTableProps<TData>) {
       columnVisibility,
       rowSelection,
       columnFilters,
+      globalFilter,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: globalStudentFilter,
     onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -74,7 +85,7 @@ export function DataTable<TData>({ data,fields }: DataTableProps<TData>) {
   return (
     <>
       <div className="space-y-4">
-        <DataTableToolbar table={table} fields={fields} />
+        <DataTableToolbar table={table} fields={fields} classNames={classNames} />
         <div className="rounded-md border">
           <Table>
             <TableHeader>
@@ -120,6 +131,7 @@ export function DataTable<TData>({ data,fields }: DataTableProps<TData>) {
         onOpenChange={() => setRowAction(null)}
         student={rowAction?.row.original ?? null}
         fields={fields}
+        classNames={classNames}
       />
       <DeleteStudentsDialog
         open={rowAction?.type === "delete"}

@@ -76,13 +76,15 @@ export function getColumns({ setRowAction }: GetColumnsProps): ColumnDef<Student
     },
     {
       accessorKey: "className",
-      header: ({ column }) => <DataTableColumnHeader column={column} title="Class Name" />,
+      header: ({ column }) => <DataTableColumnHeader column={column} title="Class" />,
       cell: ({ row }) => <div>{row.getValue("className")}</div>,
+      filterFn: (row, id, value) => value.includes(row.getValue(id)),
     },
     {
       accessorKey: "field",
       header: ({ column }) => <DataTableColumnHeader column={column} title="Field" />,
       cell: ({ row }) => <div>{row.getValue("field")}</div>,
+      filterFn: (row, id, value) => value.includes(row.getValue(id)),
     },
     {
       accessorKey: "average",

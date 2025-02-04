@@ -8,6 +8,7 @@ import { studentSchema } from "@/lib/validation";
 import { Button } from "@/components/ui/button";
 import { BookPlus } from "lucide-react";
 import { NewStudentModal } from "@/components/new-student-modal";
+import { InsertGradesDialog } from "@/components/insert-grades-dialog";
 
 export const metadata: Metadata = { title: "Students" };
 
@@ -23,6 +24,7 @@ async function getStudents() {
 export default async function studentPage() {
   const students = await getStudents();
   const fields = Array.from(new Set(students?.map((student) => student.field)));
+  const classNames = Array.from(new Set(students?.map((student) => student.className)));
 
   return (
     <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
@@ -32,14 +34,15 @@ export default async function studentPage() {
           <p className="text-muted-foreground">Here&apos;s a list of your students</p>
         </div>
         <div className="flex gap-3">
-          <Button variant="ghost">
+          {/* <Button variant="ghost">
             <BookPlus />
             Insert Grades
-          </Button>
-          <NewStudentModal fields={fields} />
+          </Button> */}
+          <InsertGradesDialog students={students} fields={fields} classNames={classNames} />
+          <NewStudentModal fields={fields} classNames={classNames} />
         </div>
       </div>
-      <DataTable data={students} fields={fields} />
+      <DataTable data={students} fields={fields} classNames={classNames} />
     </div>
   );
 }
