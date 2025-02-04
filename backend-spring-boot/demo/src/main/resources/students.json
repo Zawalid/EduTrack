@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "cne": "A303535058",
     "firstName": "Aleen",
     "lastName": "Kunde",
@@ -10,7 +9,6 @@
     "average": 10.77
   },
   {
-    "id": 2,
     "cne": "E343699737",
     "firstName": "Sheridan",
     "lastName": "Marks",
@@ -20,7 +18,6 @@
     "average": 17.06
   },
   {
-    "id": 3,
     "cne": "U749120564",
     "firstName": "Ella",
     "lastName": "Heathcote",
@@ -30,7 +27,6 @@
     "average": 10.32
   },
   {
-    "id": 4,
     "cne": "G663153723",
     "firstName": "Jason",
     "lastName": "Koss",
@@ -40,7 +36,6 @@
     "average": 14.8
   },
   {
-    "id": 5,
     "cne": "T529533726",
     "firstName": "Rita",
     "lastName": "Stokes-Schoen",
@@ -50,7 +45,6 @@
     "average": 11.81
   },
   {
-    "id": 6,
     "cne": "L969985683",
     "firstName": "Rodolfo",
     "lastName": "Hegmann",
@@ -60,7 +54,6 @@
     "average": 16.18
   },
   {
-    "id": 7,
     "cne": "X607166391",
     "firstName": "Braxton",
     "lastName": "Cruickshank",
@@ -70,7 +63,6 @@
     "average": 12.6
   },
   {
-    "id": 8,
     "cne": "Q807248224",
     "firstName": "Aditya",
     "lastName": "Wuckert",
@@ -80,7 +72,6 @@
     "average": 10.77
   },
   {
-    "id": 9,
     "cne": "H195108926",
     "firstName": "Clementine",
     "lastName": "Thompson",
@@ -90,7 +81,6 @@
     "average": 18.05
   },
   {
-    "id": 10,
     "cne": "G133787909",
     "firstName": "Antone",
     "lastName": "Wolf",
@@ -100,7 +90,6 @@
     "average": 10.13
   },
   {
-    "id": 11,
     "cne": "C678882704",
     "firstName": "Murl",
     "lastName": "Corwin",
@@ -110,7 +99,6 @@
     "average": 15.16
   },
   {
-    "id": 12,
     "cne": "M428799178",
     "firstName": "Pasquale",
     "lastName": "Stoltenberg",
@@ -120,7 +108,6 @@
     "average": 16.46
   },
   {
-    "id": 13,
     "cne": "F354237776",
     "firstName": "Lisette",
     "lastName": "Murphy",
@@ -130,7 +117,6 @@
     "average": 10.03
   },
   {
-    "id": 14,
     "cne": "Q414679746",
     "firstName": "Grant",
     "lastName": "Bartoletti-Pacocha",
@@ -140,7 +126,6 @@
     "average": 19.84
   },
   {
-    "id": 15,
     "cne": "V969663883",
     "firstName": "Bridget",
     "lastName": "Mills",
@@ -150,7 +135,6 @@
     "average": 12.16
   },
   {
-    "id": 16,
     "cne": "D832204588",
     "firstName": "Nat",
     "lastName": "Greenfelder",
@@ -160,7 +144,6 @@
     "average": 16.68
   },
   {
-    "id": 17,
     "cne": "A869072151",
     "firstName": "Nikita",
     "lastName": "Ortiz",
@@ -170,7 +153,6 @@
     "average": 15.23
   },
   {
-    "id": 18,
     "cne": "R363045623",
     "firstName": "Mozell",
     "lastName": "Maggio",
@@ -180,7 +162,6 @@
     "average": 15.86
   },
   {
-    "id": 19,
     "cne": "E538454899",
     "firstName": "Sherwood",
     "lastName": "Kunde",
@@ -190,7 +171,6 @@
     "average": 10.52
   },
   {
-    "id": 20,
     "cne": "E513512418",
     "firstName": "Nikki",
     "lastName": "Franey",
@@ -200,7 +180,6 @@
     "average": 13.81
   },
   {
-    "id": 21,
     "cne": "W348569460",
     "firstName": "Emilie",
     "lastName": "Marvin",
@@ -210,7 +189,6 @@
     "average": 16.62
   },
   {
-    "id": 22,
     "cne": "A473860854",
     "firstName": "Manuela",
     "lastName": "Maggio",
@@ -220,7 +198,6 @@
     "average": 16.67
   },
   {
-    "id": 23,
     "cne": "W437592084",
     "firstName": "Monica",
     "lastName": "Kulas",
@@ -230,7 +207,6 @@
     "average": 17.62
   },
   {
-    "id": 24,
     "cne": "Z536413227",
     "firstName": "Geraldine",
     "lastName": "Gutmann",
@@ -240,7 +216,6 @@
     "average": 19.7
   },
   {
-    "id": 25,
     "cne": "F087310737",
     "firstName": "Jasen",
     "lastName": "Miller",
@@ -250,7 +225,6 @@
     "average": 13.91
   },
   {
-    "id": 26,
     "cne": "A462249240",
     "firstName": "Darrion",
     "lastName": "Parisian",
@@ -260,7 +234,6 @@
     "average": 19.8
   },
   {
-    "id": 27,
     "cne": "D305427920",
     "firstName": "Darian",
     "lastName": "O'Hara",
@@ -270,7 +243,6 @@
     "average": 17.67
   },
   {
-    "id": 28,
     "cne": "H896416279",
     "firstName": "Ramona",
     "lastName": "Weber",
@@ -280,7 +252,6 @@
     "average": 17.89
   },
   {
-    "id": 29,
     "cne": "B878456235",
     "firstName": "Erica",
     "lastName": "Gislason",
@@ -290,7 +261,6 @@
     "average": 18.28
   },
   {
-    "id": 30,
     "cne": "V533418351",
     "firstName": "Doug",
     "lastName": "Heidenreich",
@@ -300,7 +270,6 @@
     "average": 17.87
   },
   {
-    "id": 31,
     "cne": "N650337305",
     "firstName": "Lora",
     "lastName": "Stanton",
@@ -310,7 +279,6 @@
     "average": 13.27
   },
   {
-    "id": 32,
     "cne": "Q860050913",
     "firstName": "King",
     "lastName": "Hilpert",
@@ -320,7 +288,6 @@
     "average": 12.67
   },
   {
-    "id": 33,
     "cne": "B317981765",
     "firstName": "Danial",
     "lastName": "Auer",
@@ -330,7 +297,6 @@
     "average": 11.06
   },
   {
-    "id": 34,
     "cne": "K992366681",
     "firstName": "Trace",
     "lastName": "Schulist",
@@ -340,7 +306,6 @@
     "average": 16.79
   },
   {
-    "id": 35,
     "cne": "I392727808",
     "firstName": "Chauncey",
     "lastName": "Williamson",
@@ -350,7 +315,6 @@
     "average": 17.17
   },
   {
-    "id": 36,
     "cne": "P589392225",
     "firstName": "Dallas",
     "lastName": "Senger",
@@ -360,7 +324,6 @@
     "average": 13.99
   },
   {
-    "id": 37,
     "cne": "J158216857",
     "firstName": "Pauline",
     "lastName": "Cormier",
@@ -370,7 +333,6 @@
     "average": 14.64
   },
   {
-    "id": 38,
     "cne": "Q581044557",
     "firstName": "Delphine",
     "lastName": "Gleason",
@@ -380,7 +342,6 @@
     "average": 10.58
   },
   {
-    "id": 39,
     "cne": "T419975554",
     "firstName": "Shanie",
     "lastName": "Donnelly",
@@ -390,7 +351,6 @@
     "average": 12.28
   },
   {
-    "id": 40,
     "cne": "V968165026",
     "firstName": "Sonya",
     "lastName": "Ledner",
@@ -400,7 +360,6 @@
     "average": 12.47
   },
   {
-    "id": 41,
     "cne": "Q177951316",
     "firstName": "Candelario",
     "lastName": "Bogan",
@@ -410,7 +369,6 @@
     "average": 17.18
   },
   {
-    "id": 42,
     "cne": "B090372180",
     "firstName": "Cayla",
     "lastName": "Rolfson",
@@ -420,7 +378,6 @@
     "average": 13.34
   },
   {
-    "id": 43,
     "cne": "T056483826",
     "firstName": "Alycia",
     "lastName": "Schaden",
@@ -430,7 +387,6 @@
     "average": 12.56
   },
   {
-    "id": 44,
     "cne": "G811996772",
     "firstName": "Melany",
     "lastName": "Lynch",
@@ -440,7 +396,6 @@
     "average": 12.65
   },
   {
-    "id": 45,
     "cne": "C695434589",
     "firstName": "Watson",
     "lastName": "Fahey",
@@ -450,7 +405,6 @@
     "average": 18.11
   },
   {
-    "id": 46,
     "cne": "J169020574",
     "firstName": "Kelli",
     "lastName": "Koss",
@@ -460,7 +414,6 @@
     "average": 14.18
   },
   {
-    "id": 47,
     "cne": "X969204464",
     "firstName": "Jamison",
     "lastName": "Rohan",
@@ -470,7 +423,6 @@
     "average": 18.49
   },
   {
-    "id": 48,
     "cne": "Y155751135",
     "firstName": "Aliza",
     "lastName": "Glover",
@@ -480,7 +432,6 @@
     "average": 17.36
   },
   {
-    "id": 49,
     "cne": "P875022331",
     "firstName": "Madie",
     "lastName": "Mertz",
@@ -490,7 +441,6 @@
     "average": 16.96
   },
   {
-    "id": 50,
     "cne": "J187811638",
     "firstName": "Dominique",
     "lastName": "Gutkowski",
@@ -500,7 +450,6 @@
     "average": 14.68
   },
   {
-    "id": 51,
     "cne": "X699661532",
     "firstName": "Drew",
     "lastName": "Schmidt",
@@ -510,7 +459,6 @@
     "average": 19.62
   },
   {
-    "id": 52,
     "cne": "H427850422",
     "firstName": "Gerda",
     "lastName": "Cole",
@@ -520,7 +468,6 @@
     "average": 12.38
   },
   {
-    "id": 53,
     "cne": "R512815576",
     "firstName": "Cecilia",
     "lastName": "Fadel",
@@ -530,7 +477,6 @@
     "average": 17.4
   },
   {
-    "id": 54,
     "cne": "L092848464",
     "firstName": "Karianne",
     "lastName": "Volkman",
@@ -540,7 +486,6 @@
     "average": 16.86
   },
   {
-    "id": 55,
     "cne": "D408543435",
     "firstName": "Dawn",
     "lastName": "Medhurst",
@@ -550,7 +495,6 @@
     "average": 18.88
   },
   {
-    "id": 56,
     "cne": "S691610840",
     "firstName": "Madison",
     "lastName": "Maggio",
@@ -560,7 +504,6 @@
     "average": 11.27
   },
   {
-    "id": 57,
     "cne": "Z830790808",
     "firstName": "Nina",
     "lastName": "Mertz-Kautzer",
@@ -570,7 +513,6 @@
     "average": 15.78
   },
   {
-    "id": 58,
     "cne": "R447776972",
     "firstName": "Sherman",
     "lastName": "Cassin",
@@ -580,7 +522,6 @@
     "average": 14.17
   },
   {
-    "id": 59,
     "cne": "L574655911",
     "firstName": "Zelma",
     "lastName": "Farrell",
@@ -590,7 +531,6 @@
     "average": 17.55
   },
   {
-    "id": 60,
     "cne": "Z588268207",
     "firstName": "Ansley",
     "lastName": "Baumbach",
@@ -600,7 +540,6 @@
     "average": 10.05
   },
   {
-    "id": 61,
     "cne": "Q343924071",
     "firstName": "Easton",
     "lastName": "Jacobs",
@@ -610,7 +549,6 @@
     "average": 17.77
   },
   {
-    "id": 62,
     "cne": "H573458801",
     "firstName": "Glennie",
     "lastName": "Blanda",
@@ -620,7 +558,6 @@
     "average": 11.07
   },
   {
-    "id": 63,
     "cne": "I133609933",
     "firstName": "Elisabeth",
     "lastName": "Stanton",
@@ -630,7 +567,6 @@
     "average": 12.79
   },
   {
-    "id": 64,
     "cne": "R159013690",
     "firstName": "Linnie",
     "lastName": "Rosenbaum",
@@ -640,7 +576,6 @@
     "average": 17.51
   },
   {
-    "id": 65,
     "cne": "C315972279",
     "firstName": "Aubrey",
     "lastName": "Boyle",
@@ -650,7 +585,6 @@
     "average": 10.79
   },
   {
-    "id": 66,
     "cne": "T801498647",
     "firstName": "Zena",
     "lastName": "McLaughlin",
@@ -660,7 +594,6 @@
     "average": 10.45
   },
   {
-    "id": 67,
     "cne": "G705312588",
     "firstName": "Malcolm",
     "lastName": "Hilll",
@@ -670,7 +603,6 @@
     "average": 16.31
   },
   {
-    "id": 68,
     "cne": "G273998661",
     "firstName": "Ransom",
     "lastName": "Shields",
@@ -680,7 +612,6 @@
     "average": 18.26
   },
   {
-    "id": 69,
     "cne": "W387110676",
     "firstName": "Baylee",
     "lastName": "Reilly",
@@ -690,7 +621,6 @@
     "average": 19.88
   },
   {
-    "id": 70,
     "cne": "D205691601",
     "firstName": "Ewald",
     "lastName": "Kunde",
@@ -700,7 +630,6 @@
     "average": 14.47
   },
   {
-    "id": 71,
     "cne": "R910214468",
     "firstName": "Dino",
     "lastName": "Spinka",
@@ -710,7 +639,6 @@
     "average": 14.22
   },
   {
-    "id": 72,
     "cne": "Y652534305",
     "firstName": "Clementine",
     "lastName": "Beahan",
@@ -720,7 +648,6 @@
     "average": 16.77
   },
   {
-    "id": 73,
     "cne": "N095330169",
     "firstName": "Jamie",
     "lastName": "Feeney",
@@ -730,7 +657,6 @@
     "average": 10.8
   },
   {
-    "id": 74,
     "cne": "H504418114",
     "firstName": "Sandra",
     "lastName": "Rowe-Krajcik",
@@ -740,7 +666,6 @@
     "average": 18.58
   },
   {
-    "id": 75,
     "cne": "L706045623",
     "firstName": "Elisabeth",
     "lastName": "Glover",
@@ -750,7 +675,6 @@
     "average": 19.56
   },
   {
-    "id": 76,
     "cne": "J913066167",
     "firstName": "Zoey",
     "lastName": "Gibson",
@@ -760,7 +684,6 @@
     "average": 14.69
   },
   {
-    "id": 77,
     "cne": "H694520242",
     "firstName": "Chauncey",
     "lastName": "Hills",
@@ -770,7 +693,6 @@
     "average": 11.51
   },
   {
-    "id": 78,
     "cne": "J819585593",
     "firstName": "Margie",
     "lastName": "Ernser",
@@ -780,7 +702,6 @@
     "average": 11.72
   },
   {
-    "id": 79,
     "cne": "Z715799281",
     "firstName": "Micheal",
     "lastName": "Ebert",
@@ -790,7 +711,6 @@
     "average": 15.12
   },
   {
-    "id": 80,
     "cne": "E300678986",
     "firstName": "Lennie",
     "lastName": "Stoltenberg",
@@ -800,7 +720,6 @@
     "average": 12
   },
   {
-    "id": 81,
     "cne": "R274063998",
     "firstName": "Ofelia",
     "lastName": "Franecki",
@@ -810,7 +729,6 @@
     "average": 12.68
   },
   {
-    "id": 82,
     "cne": "D950669008",
     "firstName": "August",
     "lastName": "Bayer",
@@ -820,7 +738,6 @@
     "average": 11.93
   },
   {
-    "id": 83,
     "cne": "G909301147",
     "firstName": "Savanah",
     "lastName": "Boehm",
@@ -830,7 +747,6 @@
     "average": 13.88
   },
   {
-    "id": 84,
     "cne": "V981179409",
     "firstName": "Dallin",
     "lastName": "Botsford",
@@ -840,7 +756,6 @@
     "average": 11.43
   },
   {
-    "id": 85,
     "cne": "X678295109",
     "firstName": "Luis",
     "lastName": "Crona",
@@ -850,7 +765,6 @@
     "average": 10.95
   },
   {
-    "id": 86,
     "cne": "U041575798",
     "firstName": "Ted",
     "lastName": "Kovacek",
@@ -860,7 +774,6 @@
     "average": 18.56
   },
   {
-    "id": 87,
     "cne": "X069973719",
     "firstName": "Raphael",
     "lastName": "Aufderhar",
@@ -870,7 +783,6 @@
     "average": 15.48
   },
   {
-    "id": 88,
     "cne": "B967150183",
     "firstName": "Katelyn",
     "lastName": "Gottlieb",
@@ -880,7 +792,6 @@
     "average": 10.42
   },
   {
-    "id": 89,
     "cne": "E190123114",
     "firstName": "Violette",
     "lastName": "Yundt",
@@ -890,7 +801,6 @@
     "average": 19.33
   },
   {
-    "id": 90,
     "cne": "X647032860",
     "firstName": "Wilson",
     "lastName": "Thompson",
@@ -900,7 +810,6 @@
     "average": 15.13
   },
   {
-    "id": 91,
     "cne": "U662718309",
     "firstName": "Kiel",
     "lastName": "Hessel",
@@ -910,7 +819,6 @@
     "average": 15.71
   },
   {
-    "id": 92,
     "cne": "H473352965",
     "firstName": "Celestino",
     "lastName": "Boehm",
@@ -920,7 +828,6 @@
     "average": 18.76
   },
   {
-    "id": 93,
     "cne": "B079243639",
     "firstName": "Durward",
     "lastName": "Kshlerin",
@@ -930,7 +837,6 @@
     "average": 19.58
   },
   {
-    "id": 94,
     "cne": "O106305245",
     "firstName": "Mateo",
     "lastName": "Mayert",
@@ -940,7 +846,6 @@
     "average": 10.97
   },
   {
-    "id": 95,
     "cne": "L328549650",
     "firstName": "Janick",
     "lastName": "Schaefer",
@@ -950,7 +855,6 @@
     "average": 19.57
   },
   {
-    "id": 96,
     "cne": "E015322853",
     "firstName": "Murl",
     "lastName": "O'Kon",
@@ -960,7 +864,6 @@
     "average": 15.4
   },
   {
-    "id": 97,
     "cne": "E799856746",
     "firstName": "Ewell",
     "lastName": "Bayer",
@@ -970,7 +873,6 @@
     "average": 16.02
   },
   {
-    "id": 98,
     "cne": "O458876585",
     "firstName": "Chloe",
     "lastName": "Adams",
@@ -980,7 +882,6 @@
     "average": 15.57
   },
   {
-    "id": 99,
     "cne": "W310918259",
     "firstName": "Richmond",
     "lastName": "Weissnat",
@@ -990,7 +891,6 @@
     "average": 12.67
   },
   {
-    "id": 100,
     "cne": "K223246267",
     "firstName": "Seth",
     "lastName": "Wunsch",

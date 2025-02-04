@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import { connectDB } from "./db.js";
 import gradeRoutes from "./routes/grades.js";
+import { seedGrades } from "./utils/seed.js";
 
 // Initialization
 const fastify = Fastify({
@@ -15,6 +16,12 @@ fastify.get("/", async (request, reply) => {
 });
 
 fastify.register(gradeRoutes, { prefix: "/api/grades" });
+
+fastify.post("/api/grades/seed/:count", async (request, reply) => {
+  const count = request.params.count;
+  await seedGrades(count);
+  reply.send({ message: `Seeded ${count} grades` });
+});
 
 // Start server
 const start = async () => {

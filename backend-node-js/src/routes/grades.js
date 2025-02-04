@@ -48,7 +48,7 @@ export default async function gradeRoutes(fastify, opts) {
   });
 
   // Update grade
-  fastify.put("/:id", async (request, reply) => {
+  fastify.patch("/:id", async (request, reply) => {
     try {
       const grade = await Grade.findOneAndUpdate({ _id: request.params.id }, request.body, {
         new: true,
@@ -126,9 +126,9 @@ export default async function gradeRoutes(fastify, opts) {
   });
 
   // Get subjects of grades
-
   fastify.get("/subjects", async (request, reply) => {
     const subjects = await Grade.distinct("subject");
     return subjects;
   });
+  
 }
