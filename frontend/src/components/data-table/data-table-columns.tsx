@@ -4,7 +4,6 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Ellipsis } from "lucide-react";
 import * as React from "react";
 
-import { DataTableColumnHeader } from "../../../_table/data-table/data-table-column-header";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -14,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DataTableColumnHeader } from "./data-table-column-header";
 
 interface GetColumnsProps {
   setRowAction: React.Dispatch<React.SetStateAction<DataTableRowAction<Student> | null>>;

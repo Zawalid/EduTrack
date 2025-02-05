@@ -1,4 +1,9 @@
-import { studentSchema, createStudentSchema, updateStudentSchema } from "@/lib/validation";
+import {
+  studentSchema,
+  createStudentSchema,
+  updateStudentSchema,
+  gradeSchema,
+} from "@/lib/validation";
 import { z } from "zod";
 
 declare global {
@@ -6,6 +11,7 @@ declare global {
   type CreateStudentSchema = z.infer<typeof createStudentSchema>;
   type UpdateStudentSchema = z.infer<typeof updateStudentSchema>;
 
+  type Grade = z.infer<typeof gradeSchema>;
   interface DataTableRowAction<TData> {
     row: Row<TData>;
     type: "update" | "delete";
@@ -18,11 +24,10 @@ declare global {
     count?: number;
   }
 
-   interface DataTableFilterField<TData> {
+  interface DataTableFilterField<TData> {
     id: StringKeyOf<TData>;
     label: string;
     placeholder?: string;
     options?: Option[];
   }
-  
 }

@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/table";
 import { toast } from "sonner";
 import { ComboboxForm } from "./ui/combobox-form";
+import { SEMESTERS } from "@/lib/constants";
 
 const SUBJECTS = [
   "Mathematics",
@@ -49,7 +50,6 @@ const SUBJECTS = [
   "History",
   "Literature",
 ];
-const SEMESTERS = ["S1", "S2", "S3", "S4", "S5", "S6"] as const;
 const GRADE_TYPES = ["Midterm", "Final", "Project", "Assignment", "Quiz"];
 
 const gradeSchema = z.object({
