@@ -26,23 +26,21 @@ import {
 } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { ComboboxForm } from "@/components/ui/combobox-form";
-import { updateStudentSchema } from "@/lib/validation";
+import { SelectForm } from "@/components/ui/select-form";
+
+import { createStudentSchema } from "@/lib/validation";
+import { revalidate, updateStudent } from "@/lib/api/students/actions";
+import { CLASSES } from "@/lib/constants";
 
 interface UpdateStudentSheetProps extends React.ComponentPropsWithRef<typeof Sheet> {
   student: Student | null;
   fields: string[];
-  classNames: string[];
 }
 
-export function UpdateStudentSheet({
-  student,
-  fields,
-  classNames,
-  ...props
-}: UpdateStudentSheetProps) {
+export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentSheetProps) {
   const [isUpdatePending, startUpdateTransition] = React.useTransition();
 
-  const form = useForm<UpdateStudentSchema>({ resolver: zodResolver(updateStudentSchema) });
+  const form = useForm<CreateStudentSchema>({ resolver: zodResolver(createStudentSchema) });
 
   React.useEffect(() => {
     form.reset({
@@ -50,35 +48,28 @@ export function UpdateStudentSheet({
       firstName: student?.firstName ?? "",
       lastName: student?.lastName ?? "",
       email: student?.email ?? "",
-      className: student?.className ?? "",
+      className: student?.className ?? undefined,
       field: student?.field ?? "",
     });
   }, [form, student]);
 
-  function onSubmit(input: UpdateStudentSchema) {
-    // startUpdateTransition(async () => {
-    //   if (!student) return;
+  function onSubmit(input: CreateStudentSchema) {
+    startUpdateTransition(async () => {
+      if (!student) return;
 
-    //   console.log("Updating student with ID:", student.id);
-    //   console.log("Update data:", input);
+      const { error } = await updateStudent(student.id, { ...student, ...input });
 
-    //   const { error } = await updateStudent({
-    //     id: student.id,
-    //     ...input,
-    //   });
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
 
-    //   if (error) {
-    //     toast.error(error);
-    //     console.log("Error updating student:", error);
-    //     return;
-    //   }
+      form.reset();
+      props.onOpenChange?.(false);
+      toast.success("Student updated successfully");
 
-    //   form.reset();
-    //   props.onOpenChange?.(false);
-    //   toast.success("Student updated");
-    //   console.log("Student updated successfully");
-    // });
-    console.log("Updating student with ID:", student?.id, input);
+      await revalidate();
+    });
   }
 
   return (
@@ -142,8 +133,20 @@ export function UpdateStudentSheet({
                 </FormItem>
               )}
             />
-            <ComboboxForm form={form} name="className" label="Class" items={classNames} />
-            <ComboboxForm form={form} name="field" label="Field" items={fields} />
+            <SelectForm
+              form={form}
+              name="className"
+              label="Class"
+              items={CLASSES}
+              placeholder="Select a class"
+            />
+            <ComboboxForm
+              form={form}
+              name="field"
+              label="Field"
+              items={fields}
+              placeholder="Select a field"
+            />
             <SheetFooter className="gap-2 mt-auto pt-2 sm:space-x-0">
               <SheetClose asChild>
                 <Button type="button" variant="outline">

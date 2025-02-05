@@ -42,4 +42,8 @@ public class StudentService {
     public void deleteStudent(long id) {
         repository.deleteById(id);
     }
+
+    public void deleteStudents(List<Long> ids) {
+        repository.deleteAllById(ids);
+    }
 }

@@ -1,10 +1,10 @@
 "use server";
 
-const BASE_URL = 'http://localhost:3000/api/grades';
+const BASE_URL = 'http://localhost:3001/api/grades';
 
 export const createGrade = async (grade: Grade): Promise<{ data: Grade | null; error: Error | null }> => {
   try {
-    const response = await fetch(`${BASE_URL}/`, {
+    const response = await fetch(`${BASE_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,22 +51,6 @@ export const deleteGrade = async (id: string): Promise<{ data: Grade | null; err
       throw new Error("Failed to delete grade");
     }
     const data: Grade = await response.json();
-    return { data, error: null };
-  } catch (error) {
-    console.error(error);
-    return { data: null, error: error as Error };
-  }
-};
-
-export const seedGrades = async (number: number): Promise<{ data: Grade[] | null; error: Error | null }> => {
-  try {
-    const response = await fetch(`${BASE_URL}/seed/${number}`, {
-      method: "POST",
-    });
-    if (!response.ok) {
-      throw new Error("Failed to seed grades");
-    }
-    const data: Grade[] = await response.json();
     return { data, error: null };
   } catch (error) {
     console.error(error);

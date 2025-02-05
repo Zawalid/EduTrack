@@ -24,11 +24,12 @@ fastify.post("/api/grades/seed/:count", async (request, reply) => {
 });
 
 // Start server
+const port = process.env.PORT || 3000
 const start = async () => {
   try {
     // Connect to MongoDB
     connectDB();
-    const host = await fastify.listen({ port: 3000 });
+    const host = await fastify.listen({ port });
     console.log(`Server is running at ${host}`);
   } catch (err) {
     fastify.log.error(err);

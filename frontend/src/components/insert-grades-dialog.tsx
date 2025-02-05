@@ -5,6 +5,7 @@ import { BookPlus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -38,18 +39,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { toast } from "sonner";
-import { ComboboxForm } from "./ui/combobox-form";
-import { SEMESTERS } from "@/lib/constants";
+import { ComboboxForm } from "@/components/ui/combobox-form";
+import { SelectForm } from "@/components/ui/select-form";
 
-const SUBJECTS = [
-  "Mathematics",
-  "Physics",
-  "Chemistry",
-  "Biology",
-  "History",
-  "Literature",
-];
+import { CLASSES, SEMESTERS } from "@/lib/constants";
+
+const SUBJECTS = ["Mathematics", "Physics", "Chemistry", "Biology", "History", "Literature"];
 const GRADE_TYPES = ["Midterm", "Final", "Project", "Assignment", "Quiz"];
 
 const gradeSchema = z.object({
@@ -73,32 +68,12 @@ const gradeSchema = z.object({
 
 type GradeFormValues = z.infer<typeof gradeSchema>;
 
-interface Student {
-  id: number;
-  firstName: string;
-  lastName: string;
-  className: string;
-  field: string;
-}
-
 interface InsertGradesDialogProps {
   students: Student[];
-  classNames: string[];
   fields: string[];
-  onGradesSubmit: (
-    grades: {
-      student_id: number;
-      grade: number;
-      subject: string;
-      semester: string;
-      type: string;
-      className: string;
-      field: string;
-    }[]
-  ) => Promise<void>;
 }
 
-export function InsertGradesDialog({ students, classNames, fields }: InsertGradesDialogProps) {
+export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps) {
   const [open, setOpen] = React.useState(false);
 
   const form = useForm<GradeFormValues>({
@@ -170,8 +145,20 @@ export function InsertGradesDialog({ students, classNames, fields }: InsertGrade
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
-              <ComboboxForm form={form} name="className" label="Class" items={classNames} />
-              <ComboboxForm form={form} name="field" label="Field" items={fields} />
+              <SelectForm
+                form={form}
+                name="className"
+                label="Class"
+                items={CLASSES}
+                placeholder="Select a class"
+              />
+              <ComboboxForm
+                form={form}
+                name="field"
+                label="Field"
+                items={fields}
+                placeholder="Select a field"
+              />
             </div>
             <div className="grid grid-cols-3 gap-4">
               <ComboboxForm form={form} name="subject" label="Subject" items={SUBJECTS} />

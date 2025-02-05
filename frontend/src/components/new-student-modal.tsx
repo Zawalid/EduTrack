@@ -1,8 +1,10 @@
 "use client";
 
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
+import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Loader, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,17 +25,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Loader, UserPlus } from "lucide-react";
-import { createStudentSchema } from "@/lib/validation";
-import { ComboboxForm } from "./ui/combobox-form";
+import { ComboboxForm } from "@/components/ui/combobox-form";
+import { SelectForm } from "@/components/ui/select-form";
 
-export function NewStudentModal({
-  fields,
-  classNames,
-}: {
-  fields: string[];
-  classNames: string[];
-}) {
+import { CLASSES } from "@/lib/constants";
+import { createStudentSchema } from "@/lib/validation";
+import { createStudent, revalidate } from "@/lib/api/students/actions";
+
+export function NewStudentModal({ fields }: { fields: string[] }) {
+  const [isOpen, setIsOpen] = useState(false);
   const [isCreatePending, startCreateTransition] = useTransition();
 
   const form = useForm<CreateStudentSchema>({
@@ -42,20 +42,33 @@ export function NewStudentModal({
       firstName: "",
       lastName: "",
       email: "",
-      className: "",
+      className: undefined,
       field: "",
     },
     resolver: zodResolver(createStudentSchema),
   });
 
   function onSubmit(input: CreateStudentSchema) {
-    console.log("Student created:", input);
+    startCreateTransition(async () => {
+      const { error } = await createStudent(input);
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      form.reset();
+      setIsOpen(false);
+      toast.success("Student created successfully");
+
+      await revalidate();
+    });
   }
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button onClick={() => setIsOpen(true)}>
           <UserPlus />
           New Student
         </Button>
@@ -121,11 +134,17 @@ export function NewStudentModal({
                 </FormItem>
               )}
             />
-            <ComboboxForm form={form} name="className" label="Class" items={classNames} />
-            <ComboboxForm form={form} name="field" label="Field" items={fields} />
+            <SelectForm
+              form={form}
+              name="className"
+              label="Class"
+              items={CLASSES}
+              placeholder="Select a class"
+            />
+            <ComboboxForm form={form} name="field" label="Field" items={fields}  placeholder="Select a field" />
             <DialogFooter className="gap-2 pt-2 sm:space-x-0 col-span-2">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" onClick={() => form.reset()}>
                   Cancel
                 </Button>
               </DialogClose>

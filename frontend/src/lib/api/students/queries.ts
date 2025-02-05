@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:8080/api/students';
 
 export const getAllStudents = async (): Promise<{ data: Student[] | null; error: Error | null }> => {
     try {
-        const response = await fetch(`${BASE_URL}/`);
+        const response = await fetch(`${BASE_URL}`);
         if (!response.ok) {
             throw new Error('Failed to fetch students');
         }

@@ -27,6 +27,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { deleteStudents, revalidate } from "@/lib/api/students/actions";
 
 interface DeleteStudentsDialogProps extends React.ComponentPropsWithoutRef<typeof Dialog> {
   students: Row<Student>["original"][];
@@ -44,21 +45,20 @@ export function DeleteStudentsDialog({
   const isDesktop = useMediaQuery("(min-width: 640px)");
 
   function onDelete() {
-    // startDeleteTransition(async () => {
-    //   const { error } = await deleteStudents({
-    //     ids: students.map((student) => student.id),
-    //   });
+    startDeleteTransition(async () => {
+      const { error } = await deleteStudents(students.map((student) => student.id));
 
-    //   if (error) {
-    //     toast.error(error);
-    //     return;
-    //   }
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
 
-    //   props.onOpenChange?.(false);
-    //   toast.success("Students deleted");
-    //   onSuccess?.();
-    // });
-    console.log({ ids: students.map((student) => student.id) });
+      props.onOpenChange?.(false);
+      toast.success("Students deleted");
+      onSuccess?.();
+
+      await revalidate();
+    });
   }
 
   if (isDesktop) {

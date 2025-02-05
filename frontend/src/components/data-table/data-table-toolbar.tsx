@@ -1,7 +1,7 @@
 "use client";
 
 import { Table } from "@tanstack/react-table";
-import { Download, X } from "lucide-react";
+import { Download, RefreshCcw, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,18 +10,18 @@ import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { DataTableViewOptions } from "./data-table-view-options";
 import { DeleteStudentsDialog } from "../delete-students-dialog";
 import { exportTableToCSV } from "@/lib/export";
+import { CLASSES } from "@/lib/constants";
+import { useTransition } from "react";
+import { revalidate } from "@/lib/api/students/actions";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   fields: string[];
-  classNames: string[];
 }
 
-export function DataTableToolbar<TData>({
-  table,
-  fields,
-  classNames,
-}: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({ table, fields }: DataTableToolbarProps<TData>) {
+  const [isRefreshPending, startRefreshTransition] = useTransition();
+
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
@@ -45,7 +45,7 @@ export function DataTableToolbar<TData>({
           <DataTableFacetedFilter
             column={table.getColumn("className")}
             title="Class"
-            options={classNames.map((className) => ({ value: className, label: className }))}
+            options={CLASSES.map((className) => ({ value: className, label: className }))}
           />
         )}
         {isFiltered && (
@@ -61,6 +61,13 @@ export function DataTableToolbar<TData>({
       </div>
 
       <div className="flex gap-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => startRefreshTransition(async () => await revalidate())}
+        >
+          <RefreshCcw className={isRefreshPending ? "animate-spin" : ""} />
+        </Button>
         {table.getFilteredSelectedRowModel().rows.length > 0 ? (
           <>
             <Button

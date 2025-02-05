@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { faker } from "@faker-js/faker";
+import { CLASSES } from "@/lib/constants";
 
 const fields = [
   "Mathematics",
@@ -12,7 +13,6 @@ const fields = [
   "Literature",
 ];
 
-const classes = ["DUT", "LICENCE", "MASTER", "ENGINEERING", "PHD", "BACHELOR"];
 
 let idCounter = 1;
 
@@ -22,7 +22,7 @@ const students: Student[] = Array.from({ length: 100 }, () => ({
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
   email: faker.internet.email(),
-  className: classes[Math.floor(Math.random() * classes.length)],
+  className: CLASSES[Math.floor(Math.random() * CLASSES.length)],
   field: fields[Math.floor(Math.random() * fields.length)],
   average: parseFloat((10 + Math.random() * 10).toFixed(2)), 
 }));
