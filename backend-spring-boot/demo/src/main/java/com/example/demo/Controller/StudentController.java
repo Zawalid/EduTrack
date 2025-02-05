@@ -4,6 +4,7 @@ import com.example.demo.Entity.Student;
 import com.example.demo.Service.StudentSeedService;
 import com.example.demo.Service.StudentService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -43,9 +44,26 @@ public class StudentController {
         service.deleteStudent(id);
     }
 
+    @DeleteMapping("")
+    public void deleteStudents(@RequestBody IdsWrapper idsWrapper) {
+        service.deleteStudents(idsWrapper.getIds());
+    }
+
     @PostMapping("/seed/{count}")
     public List<Student> seedStudents(@PathVariable int count) {
         return seedService.seedStudents(count);
     }
 }
 
+
+ class IdsWrapper {
+    private List<Long> ids;
+
+    public List<Long> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Long> ids) {
+        this.ids = ids;
+    }
+}

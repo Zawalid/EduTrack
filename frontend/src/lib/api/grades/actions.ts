@@ -57,3 +57,4 @@ export const deleteGrade = async (id: string): Promise<{ data: Grade | null; err
     return { data: null, error: error as Error };
   }
 };
+
