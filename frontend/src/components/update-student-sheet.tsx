@@ -52,34 +52,47 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
       email: student?.email ?? "",
       className: student?.className ?? undefined,
       field: student?.field ?? "",
-      grades: student?.grades ?? [],
+      grades: { grades: student?.grades ?? [], updated: [], deleted: [] },
     });
   }, [form, student]);
 
   function onSubmit(input: UpdateStudentSchema) {
-    const updatedGrades = input.grades.filter(
-      (_, index) => form.formState.dirtyFields.grades?.[index]
-    );
-    console.log(updatedGrades);
-    // startUpdateTransition(async () => {
-    //   if (!student) return;
+    const updated = form
+      .getValues("grades")
+      .grades.filter(
+        (grade) =>
+          form.getValues("grades").updated.includes(grade._id) &&
+          grade.grade !== student?.grades.find((g) => g._id === grade._id)?.grade
+      );
+    console.log(updated);
+    startUpdateTransition(async () => {
+      if (!student) return;
 
-    //   const { error } = await updateStudent(student.id, { ...input, average: student.average },{
-    // updated : [],
-    // deleted : [],
-    // });
+      const { error } = await updateStudent(
+        student.id,
+        {
+          className: input.className,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          cne: input.cne,
+          email: input.email,
+          field: input.field,
+          average: student.average,
+        },
+        { updated, deleted: form.getValues("grades").deleted }
+      );
 
-    //   if (error) {
-    //     toast.error(error.message);
-    //     return;
-    //   }
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
 
-    //   form.reset();
-    //   props.onOpenChange?.(false);
-    //   toast.success("Student updated successfully");
+      form.reset();
+      props.onOpenChange?.(false);
+      toast.success("Student updated successfully");
 
-    //   await revalidate();
-    // });
+      await revalidate();
+    });
   }
 
   return (

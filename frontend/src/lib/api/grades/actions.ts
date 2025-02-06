@@ -66,7 +66,7 @@ export const deleteGrades = async (ids: string[]): Promise<{ data: null; error: 
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(ids),
+      body: JSON.stringify({ ids }),
     });
     if (!response.ok) throw new Error("Failed to delete grades");
 

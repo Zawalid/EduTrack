@@ -5,6 +5,27 @@ import { seedGrades } from "./utils/seed.js";
 
 // Initialization
 const fastify = Fastify({
+  logger: {
+    transport: { target: "pino-pretty", options: {} },
+    serializers: {
+      req(request) {
+        return {
+          method: request.method,
+          url: `${request.protocol}://${request.hostname}${request.url}`,
+        };
+      },
+      res(response) {
+        return {
+          statusCode: response.statusCode,
+          method: response.request.method,
+          url: `${response.request.protocol}://${response.request.hostname}${response.request.url}`,
+        };
+      },
+    },
+  },
+  genReqId() {
+    return undefined
+  },
   ignoreTrailingSlash: true,
   caseSensitive: false,
   ignoreDuplicateSlashes: true,
@@ -24,7 +45,7 @@ fastify.post("/api/grades/seed/:count", async (request, reply) => {
 });
 
 // Start server
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 const start = async () => {
   try {
     // Connect to MongoDB

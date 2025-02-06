@@ -27,3 +27,17 @@ export function toSentenceCase(str: string) {
     .trim();
 }
 
+
+
+export const filterObject = <T>(
+  obj: T,
+  keys: (keyof T)[],
+  keysType: "include" | "exclude"
+): Partial<T> => {
+  const filtered: Partial<T> = {};
+  for (const key in obj) {
+    if (keysType === "include" && keys.includes(key)) filtered[key] = obj[key];
+    if (keysType === "exclude" && !keys.includes(key)) filtered[key] = obj[key];
+  }
+  return filtered;
+};

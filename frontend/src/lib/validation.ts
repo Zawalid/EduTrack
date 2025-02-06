@@ -29,7 +29,13 @@ export const gradeSchema = z.object({
 
 export const createStudentSchema = studentSchema.omit({ id: true, average: true });
 
-export const updateStudentSchema = createStudentSchema.extend({ grades: z.array(gradeSchema) });
+export const updateStudentSchema = createStudentSchema.extend({
+  grades: z.object({
+    grades: z.array(gradeSchema),
+    updated: z.array(z.string()),
+    deleted: z.array(z.string()),
+  }),
+});
 
 export const insertGradesSchema = z.object({
   subject: z.string().min(1, "Subject is required"),

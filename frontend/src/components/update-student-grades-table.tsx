@@ -11,13 +11,13 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 export function UpdateStudentGrades({ form }: { form: UseFormReturn<UpdateStudentSchema> }) {
   const [editGradeId, setEditGradeId] = useState<string | null>(null);
   const [editGradeValue, setEditGradeValue] = useState<string>("");
 
-  const grades = form.getValues("grades") ?? [];
+  const grades = form.getValues("grades").grades ?? [];
 
   const handleEditClick = (grade: Grade) => {
     setEditGradeId(grade._id);
@@ -26,15 +26,30 @@ export function UpdateStudentGrades({ form }: { form: UseFormReturn<UpdateStuden
 
   const handleSaveClick = (gradeId: string) => {
     form.setValue(
-      "grades",
+      "grades.grades",
       grades.map((grade) =>
         grade._id === gradeId ? { ...grade, grade: parseFloat(editGradeValue) } : grade
       ),
       { shouldDirty: true, shouldValidate: true }
     );
 
+    form.setValue(
+      "grades.updated",
+      Array.from(new Set([...form.getValues("grades").updated, gradeId]))
+    );
+
     setEditGradeId(null);
     setEditGradeValue("");
+  };
+
+  const handleDeleteClick = (gradeId: string) => {
+    form.setValue(
+      "grades.grades",
+      grades.filter((grade) => grade._id !== gradeId),
+      { shouldDirty: true, shouldValidate: true }
+    );
+
+    form.setValue("grades.deleted", [...form.getValues("grades").deleted, gradeId]);
   };
 
   return (
@@ -48,7 +63,7 @@ export function UpdateStudentGrades({ form }: { form: UseFormReturn<UpdateStuden
           <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody >
+      <TableBody>
         {grades.map((grade, index) => (
           <TableRow key={grade._id}>
             <TableCell>{grade.subject}</TableCell>
@@ -56,7 +71,7 @@ export function UpdateStudentGrades({ form }: { form: UseFormReturn<UpdateStuden
             <TableCell>
               <FormField
                 control={form.control}
-                name={`grades.${index}.grade`}
+                name={`grades.grades.${index}.grade`}
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -104,13 +119,7 @@ export function UpdateStudentGrades({ form }: { form: UseFormReturn<UpdateStuden
                 type="button"
                 variant="ghost"
                 size="icon"
-                onClick={() =>
-                  form.setValue(
-                    "grades",
-                    grades.filter((g) => g._id !== grade._id),
-                    { shouldDirty: true, shouldValidate: true }
-                  )
-                }
+                onClick={() => handleDeleteClick(grade._id)}
               >
                 <Trash />
               </Button>

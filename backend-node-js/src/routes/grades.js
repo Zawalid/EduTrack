@@ -75,16 +75,29 @@ export default async function gradeRoutes(fastify, opts) {
   fastify.delete("/delete", async (request, reply) => {
     try {
       const ids = request.body.ids;
-      const grades = await Grade.deleteMany({ _id: { $in: ids } });
-      if (!grades.deletedCount) return reply.code(404).send({ error: "Grades not found" });
+      const result = await Grade.deleteMany({ _id: { $in: ids } });
+      if (result.deletedCount === 0) return reply.code(404).send({ error: "Grades not found" });
       return { message: "Grades deleted" };
     } catch (error) {
       return reply.code(400).send({ error: error.message });
     }
   });
 
+
+  // Get student grades
+  fastify.get("/student/:student_id", async (request, reply) => {
+    try {
+      const grades = await Grade.find({ student_id: parseInt(request.params.student_id) });
+      if (!grades.length) return reply.code(404).send({ error: "Grades not found" });
+      return grades;
+    } catch (error) {
+      return reply.code(400).send({ error: error.message });
+    }
+  });
+  
+
   // Get average grade by student ID
-  fastify.get("/average/:student_id", async (request, reply) => {
+  fastify.get("/student/:student_id/average", async (request, reply) => {
     try {
       const grades = await Grade.aggregate([
         { $match: { student_id: parseInt(request.params.student_id) } },
@@ -106,7 +119,7 @@ export default async function gradeRoutes(fastify, opts) {
   });
 
   // Get top grade by student ID
-  fastify.get("/top/:student_id", async (request, reply) => {
+  fastify.get("/student/:student_id/top", async (request, reply) => {
     try {
       const grade = await Grade.findOne({ student_id: parseInt(request.params.student_id) }).sort({
         grade: -1,
