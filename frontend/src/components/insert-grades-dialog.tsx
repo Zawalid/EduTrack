@@ -1,14 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { BookPlus } from "lucide-react";
+import { BookPlus, Loader } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -43,6 +45,8 @@ import { SelectForm } from "@/components/ui/select-form";
 
 import { CLASSES, SEMESTERS } from "@/lib/constants";
 import { insertGradesSchema } from "@/lib/validation";
+import { insertGrades } from "@/lib/api/grades/actions";
+import { revalidate } from "@/lib/api/students/actions";
 
 const SUBJECTS = ["Mathematics", "Physics", "Chemistry", "Biology", "History", "Literature"];
 const GRADE_TYPES = ["Midterm", "Final", "Project", "Assignment", "Quiz"];
@@ -53,7 +57,8 @@ interface InsertGradesDialogProps {
 }
 
 export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps) {
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isInsertPending, startInsertTransition] = React.useTransition();
 
   const form = useForm<InsertGradesSchema>({
     resolver: zodResolver(insertGradesSchema),
@@ -89,30 +94,38 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
     }
   }, [selectedClassName, selectedField, students, form]);
 
-  async function onSubmit(data: InsertGradesSchema) {
-    try {
-      const formattedGrades = data.grades.map((grade) => ({
-        student_id: grade.student_id,
-        grade: Number(grade.grade),
-        subject: data.subject,
-        semester: data.semester,
-        type: data.type,
-      }));
+  const searchedStudents = students.filter(
+    (student) => student.className === selectedClassName && student.field === selectedField
+  );
 
-      
+  async function onSubmit(data: InsertGradesSchema) {
+    if (!searchedStudents.length) return;
+
+    const formattedGrades = data.grades.map((grade) => ({
+      student_id: grade.student_id,
+      grade: Number(grade.grade),
+      subject: data.subject,
+      semester: data.semester,
+      type: data.type,
+    }));
+    startInsertTransition(async () => {
+      const { error } = await insertGrades(formattedGrades);
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
       form.reset();
-      setOpen(false);
-      toast.success("Grades saved successfully");
-      
-      console.log(formattedGrades);
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to save grades");
-    }
+      setIsOpen(false);
+      toast.success("Grades inserted successfully");
+
+      await revalidate();
+    });
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" className="gap-2">
           <BookPlus className="h-4 w-4" />
@@ -181,12 +194,8 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {students
-                    .filter(
-                      (student) =>
-                        student.className === selectedClassName && student.field === selectedField
-                    )
-                    .map((student, index) => (
+                  {searchedStudents.length ? (
+                    searchedStudents.map((student, index) => (
                       <TableRow key={student.id}>
                         <TableCell>{student.id}</TableCell>
                         <TableCell>{`${student.firstName} ${student.lastName}`}</TableCell>
@@ -213,26 +222,38 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
                           />
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={3} className="h-24 text-center">
+                        No students found.
+                      </TableCell>
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
             )}
-            <div className="flex justify-end gap-2">
+
+            <DialogFooter className="gap-2 pt-2 sm:space-x-0 col-span-2">
+              <DialogClose asChild>
+                <Button type="button" variant="outline" onClick={() => form.reset()}>
+                  Cancel
+                </Button>
+              </DialogClose>
               <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setOpen(false);
-                  form.reset();
-                }}
+                disabled={
+                  !form.formState.isDirty ||
+                  !form.formState.isValid ||
+                  isInsertPending ||
+                  !searchedStudents.length
+                }
               >
-                Cancel
-              </Button>
-              <Button type="submit" disabled={!selectedClassName || !selectedField}>
-                {/* { && <Loader2 className="mr-2 h-4 w-4 animate-spin" />} */}
+                {isInsertPending && (
+                  <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />
+                )}
                 Save Grades
               </Button>
-            </div>
+            </DialogFooter>
           </form>
         </Form>
       </DialogContent>

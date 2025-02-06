@@ -24,6 +24,28 @@ export const createGrade = async (
   }
 };
 
+export const insertGrades = async (
+  grades: Partial<Grade>[]
+): Promise<{ data: Grade[] | null; error: Error | null }> => {
+  try {
+    const response = await fetch(`${BASE_URL}/bulk`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(grades),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to insert grades");
+    }
+
+    const data: Grade[] = await response.json();
+    return { data, error: null };
+  } catch (error) {
+    console.error(error);
+    return { data: null, error: error as Error };
+  }
+};
+
 export const updateGrade = async (
   id: string,
   grade: Partial<Grade>

@@ -54,7 +54,9 @@ export function DeleteStudentsDialog({
       }
 
       props.onOpenChange?.(false);
-      toast.success("Students deleted");
+      toast.success(
+        `${students.length} student${students.length === 1 ? "" : "s"} deleted successfully`
+      );
       onSuccess?.();
 
       await revalidate();

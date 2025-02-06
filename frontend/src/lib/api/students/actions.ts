@@ -11,9 +11,7 @@ export const createStudent = async (
   try {
     const response = await fetch(`${BASE_URL}`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(student),
     });
     if (!response.ok) throw new Error("Failed to create student");
@@ -34,9 +32,7 @@ export const updateStudent = async (
   try {
     const response = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(student),
     });
     if (!response.ok) throw new Error("Failed to update student");

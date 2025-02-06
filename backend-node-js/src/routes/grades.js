@@ -1,6 +1,23 @@
 import Grade from "../models/Grade.js";
 
 export default async function gradeRoutes(fastify, opts) {
+  // Get all grades
+  fastify.get("/", async (request, reply) => {
+    const grades = await Grade.find();
+    return grades;
+  });
+
+  // Get grade by ID
+  fastify.get("/:id", async (request, reply) => {
+    try {
+      const grade = await Grade.findOne({ _id: request.params.id });
+      if (!grade) return reply.code(404).send({ error: "Grade not found" });
+      return grade;
+    } catch (error) {
+      return reply.code(400).send({ error: error.message });
+    }
+  });
+
   // Create grade
   fastify.post(
     "/",
@@ -30,22 +47,37 @@ export default async function gradeRoutes(fastify, opts) {
     }
   );
 
-  // Get all grades
-  fastify.get("/", async (request, reply) => {
-    const grades = await Grade.find();
-    return grades;
-  });
-
-  // Get grade by ID
-  fastify.get("/:id", async (request, reply) => {
-    try {
-      const grade = await Grade.findOne({ _id: request.params.id });
-      if (!grade) return reply.code(404).send({ error: "Grade not found" });
-      return grade;
-    } catch (error) {
-      return reply.code(400).send({ error: error.message });
+  // Create multiple grades
+  fastify.post(
+    "/bulk",
+    {
+      schema: {
+        body: {
+          type: "array",
+          items: {
+            type: "object",
+            required: ["student_id", "grade", "subject", "semester", "type"],
+            properties: {
+              student_id: { type: "number" },
+              grade: { type: "number" },
+              subject: { type: "string" },
+              semester: { type: "string" },
+              type: { type: "string" },
+            },
+          },
+        },
+      },
+    },
+    async (request, reply) => {
+      try {
+        const grades = request.body;
+        const insertedGrades = await Grade.insertMany(grades);
+        return reply.code(201).send(insertedGrades);
+      } catch (error) {
+        return reply.code(400).send({ error: error.message });
+      }
     }
-  });
+  );
 
   // Update grade
   fastify.patch("/:id", async (request, reply) => {
@@ -83,7 +115,6 @@ export default async function gradeRoutes(fastify, opts) {
     }
   });
 
-
   // Get student grades
   fastify.get("/student/:student_id", async (request, reply) => {
     try {
@@ -94,7 +125,6 @@ export default async function gradeRoutes(fastify, opts) {
       return reply.code(400).send({ error: error.message });
     }
   });
-  
 
   // Get average grade by student ID
   fastify.get("/student/:student_id/average", async (request, reply) => {

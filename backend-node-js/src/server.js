@@ -50,7 +50,7 @@ const start = async () => {
   try {
     // Connect to MongoDB
     connectDB();
-    const host = await fastify.listen({ port });
+    const host = await fastify.listen({ port,host: '0.0.0.0' });
     console.log(`Server is running at ${host}`);
   } catch (err) {
     fastify.log.error(err);

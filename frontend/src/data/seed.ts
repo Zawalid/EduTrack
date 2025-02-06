@@ -13,10 +13,9 @@ const fields = [
   "Literature",
 ];
 
-
 let idCounter = 1;
 
-const students: Student[] = Array.from({ length: 100 }, () => ({
+const students: Partial<Student>[] = Array.from({ length: 100 }, () => ({
   id: idCounter++,
   cne: `${faker.string.alpha({ length: 1, casing: "upper" })}${faker.string.numeric(9)}`,
   firstName: faker.person.firstName(),
@@ -24,7 +23,7 @@ const students: Student[] = Array.from({ length: 100 }, () => ({
   email: faker.internet.email(),
   className: CLASSES[Math.floor(Math.random() * CLASSES.length)],
   field: fields[Math.floor(Math.random() * fields.length)],
-  average: parseFloat((10 + Math.random() * 10).toFixed(2)), 
+  average: parseFloat((10 + Math.random() * 10).toFixed(2)),
 }));
 
 fs.writeFileSync(path.join(__dirname, "students.json"), JSON.stringify(students, null, 2));
