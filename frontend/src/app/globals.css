@@ -70,3 +70,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.toast:not([data-type="loading"]) {
+  & [data-icon] {
+    height: calc(100% + 1px);
+    @apply absolute left-0 w-11 justify-center text-white rounded-s-lg;
+
+    & svg {
+      @apply w-6 h-6;
+    }
+  }
+
+  & [data-content] {
+    @apply ml-10;
+  }
+}
+
+.toast[data-type="success"] [data-icon] {
+  background-color: limegreen;
+}
+
+.toast[data-type="error"] [data-icon] {
+  background-color: #ff0000;
+}
+
+.toast[data-type="loading"] [data-icon] {
+  @apply w-5 mr-2;
+}

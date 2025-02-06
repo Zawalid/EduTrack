@@ -44,7 +44,7 @@ public class StudentController {
         service.deleteStudent(id);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/delete")
     public void deleteStudents(@RequestBody IdsWrapper idsWrapper) {
         service.deleteStudents(idsWrapper.getIds());
     }

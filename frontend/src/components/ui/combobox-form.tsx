@@ -36,25 +36,21 @@ export function ComboboxForm({
   const [value, setValue] = React.useState(form.getValues(name) || "");
   const [options, setOptions] = React.useState(items);
 
+  const updateValue = (value: string) => {
+    setValue(value);
+    form.setValue(name, value, { shouldDirty: true, shouldValidate: true });
+  };
+
   const handleSelect = (currentValue: string) => {
-    setValue(currentValue);
-    form.setValue(name, currentValue);
+    updateValue(currentValue);
     setOpen(false);
   };
 
   const handleInputChange = (inputValue: string) => {
-    setValue(inputValue);
-    form.setValue(name, inputValue);
-
-    // Filter existing options based on input
+    updateValue(inputValue);
     const filtered = items.filter((item) => item.toLowerCase().includes(inputValue.toLowerCase()));
-
-    // Add the new value if it's not in the list
-    if (inputValue && !filtered.includes(inputValue)) {
-      setOptions([...filtered, inputValue]);
-    } else {
-      setOptions(filtered);
-    }
+    if (inputValue && !filtered.includes(inputValue)) setOptions([...filtered, inputValue]);
+    else setOptions(filtered);
   };
 
   return (

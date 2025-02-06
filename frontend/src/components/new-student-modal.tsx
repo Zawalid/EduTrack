@@ -141,14 +141,20 @@ export function NewStudentModal({ fields }: { fields: string[] }) {
               items={CLASSES}
               placeholder="Select a class"
             />
-            <ComboboxForm form={form} name="field" label="Field" items={fields}  placeholder="Select a field" />
+            <ComboboxForm
+              form={form}
+              name="field"
+              label="Field"
+              items={fields}
+              placeholder="Select a field"
+            />
             <DialogFooter className="gap-2 pt-2 sm:space-x-0 col-span-2">
               <DialogClose asChild>
                 <Button type="button" variant="outline" onClick={() => form.reset()}>
                   Cancel
                 </Button>
               </DialogClose>
-              <Button disabled={isCreatePending}>
+                <Button disabled={!form.formState.isDirty || !form.formState.isValid || isCreatePending}>
                 {isCreatePending && (
                   <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />
                 )}

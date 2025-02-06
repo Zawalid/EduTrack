@@ -39,7 +39,7 @@ export default async function gradeRoutes(fastify, opts) {
   // Get grade by ID
   fastify.get("/:id", async (request, reply) => {
     try {
-      const grade = await Grade.findOne({ _id:  request.params.id });
+      const grade = await Grade.findOne({ _id: request.params.id });
       if (!grade) return reply.code(404).send({ error: "Grade not found" });
       return grade;
     } catch (error) {
@@ -66,6 +66,18 @@ export default async function gradeRoutes(fastify, opts) {
       const grade = await Grade.findOneAndDelete({ _id: request.params.id });
       if (!grade) return reply.code(404).send({ error: "Grade not found" });
       return { message: "Grade deleted" };
+    } catch (error) {
+      return reply.code(400).send({ error: error.message });
+    }
+  });
+
+  // Delete multiple grades
+  fastify.delete("/delete", async (request, reply) => {
+    try {
+      const ids = request.body.ids;
+      const grades = await Grade.deleteMany({ _id: { $in: ids } });
+      if (!grades.deletedCount) return reply.code(404).send({ error: "Grades not found" });
+      return { message: "Grades deleted" };
     } catch (error) {
       return reply.code(400).send({ error: error.message });
     }
@@ -130,5 +142,4 @@ export default async function gradeRoutes(fastify, opts) {
     const subjects = await Grade.distinct("subject");
     return subjects;
   });
-  
 }

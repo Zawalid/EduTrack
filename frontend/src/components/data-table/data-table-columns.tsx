@@ -89,7 +89,7 @@ export function getColumns({ setRowAction }: GetColumnsProps): ColumnDef<Student
     {
       accessorKey: "average",
       header: ({ column }) => <DataTableColumnHeader column={column} title="Average" />,
-      cell: ({ row }) => <div>{row.getValue("average")}</div>,
+      cell: ({ row }) => <div>{row.getValue("average") ? row.getValue("average") : "N/A"}</div>,
     },
     {
       id: "actions",

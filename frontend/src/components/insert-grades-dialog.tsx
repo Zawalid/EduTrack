@@ -4,7 +4,6 @@ import * as React from "react";
 import { BookPlus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -43,30 +42,10 @@ import { ComboboxForm } from "@/components/ui/combobox-form";
 import { SelectForm } from "@/components/ui/select-form";
 
 import { CLASSES, SEMESTERS } from "@/lib/constants";
+import { insertGradesSchema } from "@/lib/validation";
 
 const SUBJECTS = ["Mathematics", "Physics", "Chemistry", "Biology", "History", "Literature"];
 const GRADE_TYPES = ["Midterm", "Final", "Project", "Assignment", "Quiz"];
-
-const gradeSchema = z.object({
-  subject: z.string(),
-  semester: z.enum(SEMESTERS),
-  type: z.string(),
-  className: z.string(),
-  field: z.string(),
-  grades: z.array(
-    z.object({
-      student_id: z.number(),
-      studentName: z.string(),
-      grade: z
-        .string()
-        .refine((val) => !isNaN(Number(val)) && Number(val) >= 0 && Number(val) <= 20, {
-          message: "Grade must be a number between 0 and 20",
-        }),
-    })
-  ),
-});
-
-type GradeFormValues = z.infer<typeof gradeSchema>;
 
 interface InsertGradesDialogProps {
   students: Student[];
@@ -76,13 +55,13 @@ interface InsertGradesDialogProps {
 export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps) {
   const [open, setOpen] = React.useState(false);
 
-  const form = useForm<GradeFormValues>({
-    resolver: zodResolver(gradeSchema),
+  const form = useForm<InsertGradesSchema>({
+    resolver: zodResolver(insertGradesSchema),
     defaultValues: {
       subject: SUBJECTS[0],
       semester: SEMESTERS[0],
       type: GRADE_TYPES[0],
-      className: "",
+      className: undefined,
       field: "",
       grades: [],
     },
@@ -110,7 +89,7 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
     }
   }, [selectedClassName, selectedField, students, form]);
 
-  async function onSubmit(data: GradeFormValues) {
+  async function onSubmit(data: InsertGradesSchema) {
     try {
       const formattedGrades = data.grades.map((grade) => ({
         student_id: grade.student_id,
@@ -120,9 +99,12 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
         type: data.type,
       }));
 
-      console.log(formattedGrades);
-      toast.success("Grades saved successfully");
+      
+      form.reset();
       setOpen(false);
+      toast.success("Grades saved successfully");
+      
+      console.log(formattedGrades);
     } catch (error) {
       console.log(error);
       toast.error("Failed to save grades");
@@ -220,8 +202,9 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
                                     type="number"
                                     min="0"
                                     max="20"
-                                    step="0.01"
+                                    step="0.25"
                                     className="w-[100px]"
+                                    value={field.value ?? ""}
                                   />
                                 </FormControl>
                                 <FormMessage />
@@ -235,7 +218,14 @@ export function InsertGradesDialog({ students, fields }: InsertGradesDialogProps
               </Table>
             )}
             <div className="flex justify-end gap-2">
-              <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setOpen(false);
+                  form.reset();
+                }}
+              >
                 Cancel
               </Button>
               <Button type="submit" disabled={!selectedClassName || !selectedField}>

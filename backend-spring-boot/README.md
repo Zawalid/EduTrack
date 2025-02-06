@@ -33,6 +33,7 @@ This is a Spring Boot-based REST API that manages student data using a MySQL dat
 - **POST /api/students/** – Create a new student
 - **PATCH /api/students/{id}** – Update student details
 - **DELETE /api/students/{id}** – Delete a student
+- **DELETE /api/students/delete** – Delete multiple student
 - **POST /api/students/seed/:number** – Seed the database with a specified number of random students
 
 

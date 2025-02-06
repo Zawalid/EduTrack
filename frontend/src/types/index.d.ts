@@ -3,15 +3,18 @@ import {
   createStudentSchema,
   updateStudentSchema,
   gradeSchema,
+  insertGradesSchema,
 } from "@/lib/validation";
 import { z } from "zod";
 
 declare global {
-  type Student = z.infer<typeof studentSchema>;
+  type Student = z.infer<typeof studentSchema> & { grades: Grade[] };
   type CreateStudentSchema = z.infer<typeof createStudentSchema>;
   type UpdateStudentSchema = z.infer<typeof updateStudentSchema>;
 
-  type Grade = z.infer<typeof gradeSchema>;
+  type Grade = z.infer<typeof gradeSchema> & { _id: string };
+  type InsertGradesSchema = z.infer<typeof insertGradesSchema>;
+
   interface DataTableRowAction<TData> {
     row: Row<TData>;
     type: "update" | "delete";

@@ -28,9 +28,11 @@ import { Input } from "@/components/ui/input";
 import { ComboboxForm } from "@/components/ui/combobox-form";
 import { SelectForm } from "@/components/ui/select-form";
 
-import { createStudentSchema } from "@/lib/validation";
+import { updateStudentSchema } from "@/lib/validation";
 import { revalidate, updateStudent } from "@/lib/api/students/actions";
 import { CLASSES } from "@/lib/constants";
+import { Separator } from "./ui/separator";
+import { UpdateStudentGrades } from "./update-student-grades-table";
 
 interface UpdateStudentSheetProps extends React.ComponentPropsWithRef<typeof Sheet> {
   student: Student | null;
@@ -40,7 +42,7 @@ interface UpdateStudentSheetProps extends React.ComponentPropsWithRef<typeof She
 export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentSheetProps) {
   const [isUpdatePending, startUpdateTransition] = React.useTransition();
 
-  const form = useForm<CreateStudentSchema>({ resolver: zodResolver(createStudentSchema) });
+  const form = useForm<UpdateStudentSchema>({ resolver: zodResolver(updateStudentSchema) });
 
   React.useEffect(() => {
     form.reset({
@@ -50,110 +52,127 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
       email: student?.email ?? "",
       className: student?.className ?? undefined,
       field: student?.field ?? "",
+      grades: student?.grades ?? [],
     });
   }, [form, student]);
 
-  function onSubmit(input: CreateStudentSchema) {
-    startUpdateTransition(async () => {
-      if (!student) return;
+  function onSubmit(input: UpdateStudentSchema) {
+    const updatedGrades = input.grades.filter(
+      (_, index) => form.formState.dirtyFields.grades?.[index]
+    );
+    console.log(updatedGrades);
+    // startUpdateTransition(async () => {
+    //   if (!student) return;
 
-      const { error } = await updateStudent(student.id, { ...student, ...input });
+    //   const { error } = await updateStudent(student.id, { ...input, average: student.average },{
+    // updated : [],
+    // deleted : [],
+    // });
 
-      if (error) {
-        toast.error(error.message);
-        return;
-      }
+    //   if (error) {
+    //     toast.error(error.message);
+    //     return;
+    //   }
 
-      form.reset();
-      props.onOpenChange?.(false);
-      toast.success("Student updated successfully");
+    //   form.reset();
+    //   props.onOpenChange?.(false);
+    //   toast.success("Student updated successfully");
 
-      await revalidate();
-    });
+    //   await revalidate();
+    // });
   }
 
   return (
     <Sheet {...props}>
-      <SheetContent className="flex flex-col gap-6 sm:max-w-md">
+      <SheetContent className="flex flex-col gap-6 sm:max-w-lg overflow-auto">
         <SheetHeader className="text-left">
           <SheetTitle>Update Student</SheetTitle>
           <SheetDescription>Update the student details and save the changes</SheetDescription>
         </SheetHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 flex-1">
-            <FormField
-              control={form.control}
-              name="cne"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>CNE</FormLabel>
-                  <FormControl>
-                    <Input placeholder="CNE" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>First Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="First Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Last Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Last Name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <SelectForm
-              form={form}
-              name="className"
-              label="Class"
-              items={CLASSES}
-              placeholder="Select a class"
-            />
-            <ComboboxForm
-              form={form}
-              name="field"
-              label="Field"
-              items={fields}
-              placeholder="Select a field"
-            />
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="cne"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>CNE</FormLabel>
+                    <FormControl>
+                      <Input placeholder="CNE" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="First Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Last Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <SelectForm
+                form={form}
+                name="className"
+                label="Class"
+                items={CLASSES}
+                placeholder="Select a class"
+              />
+              <ComboboxForm
+                form={form}
+                name="field"
+                label="Field"
+                items={fields}
+                placeholder="Select a field"
+              />
+            </div>
+            <Separator />
+            <div className="space-y-2 overflow-auto">
+              <h3 className="text- font-semibold">Grades</h3>
+              <UpdateStudentGrades form={form} />
+            </div>
             <SheetFooter className="gap-2 mt-auto pt-2 sm:space-x-0">
               <SheetClose asChild>
                 <Button type="button" variant="outline">
                   Cancel
                 </Button>
               </SheetClose>
-              <Button disabled={isUpdatePending}>
+              <Button
+                disabled={isUpdatePending || !form.formState.isDirty || !form.formState.isValid}
+              >
                 {isUpdatePending && (
                   <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />
                 )}
