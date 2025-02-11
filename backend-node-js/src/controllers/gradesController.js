@@ -1,3 +1,4 @@
+import { calculateAverageProducer } from "../kafka/producers.js";
 import Grade from "../models/Grade.js";
 
 export const getAllGrades = async (request, reply) => {
@@ -19,6 +20,7 @@ export const createGrade = async (request, reply) => {
   try {
     const grade = new Grade(request.body);
     await grade.save();
+    calculateAverageProducer(grade.student_id);
     return reply.code(201).send(grade);
   } catch (error) {
     return reply.code(400).send({ error: error.message });
@@ -29,6 +31,10 @@ export const createMultipleGrades = async (request, reply) => {
   try {
     const grades = request.body;
     const insertedGrades = await Grade.insertMany(grades);
+
+    const studentsIds = [...new Set(insertedGrades.map((grade) => grade.student_id))];
+    calculateAverageProducer(studentsIds);
+
     return reply.code(201).send(insertedGrades);
   } catch (error) {
     return reply.code(400).send({ error: error.message });
@@ -41,6 +47,9 @@ export const updateGrade = async (request, reply) => {
       new: true,
     });
     if (!grade) return reply.code(404).send({ error: "Grade not found" });
+
+    calculateAverageProducer(grade.student_id);
+
     return grade;
   } catch (error) {
     return reply.code(400).send({ error: error.message });
@@ -51,6 +60,9 @@ export const deleteGrade = async (request, reply) => {
   try {
     const grade = await Grade.findOneAndDelete({ _id: request.params.id });
     if (!grade) return reply.code(404).send({ error: "Grade not found" });
+
+    calculateAverageProducer(grade.student_id);
+
     return { message: "Grade deleted" };
   } catch (error) {
     return reply.code(400).send({ error: error.message });
@@ -62,6 +74,10 @@ export const deleteMultipleGrades = async (request, reply) => {
     const ids = request.body.ids;
     const result = await Grade.deleteMany({ _id: { $in: ids } });
     if (result.deletedCount === 0) return reply.code(404).send({ error: "Grades not found" });
+
+    const studentsIds = await Grade.distinct("student_id", { _id: { $in: ids } });
+    calculateAverageProducer(studentsIds);
+
     return { message: "Grades deleted" };
   } catch (error) {
     return reply.code(400).send({ error: error.message });
@@ -80,7 +96,7 @@ export const getStudentGrades = async (request, reply) => {
 
 export const getAverageGradeByStudentId = async (request, reply) => {
   try {
-    const grades = await Grade.aggregate([
+    const average = await Grade.aggregate([
       { $match: { student_id: parseInt(request.params.student_id) } },
       { $group: { _id: "$student_id", average: { $avg: "$grade" }, count: { $sum: 1 } } },
       {
@@ -92,8 +108,8 @@ export const getAverageGradeByStudentId = async (request, reply) => {
         },
       },
     ]);
-    if (!grades.length) return reply.code(404).send({ error: "Grades not found" });
-    return grades[0];
+    if (!average.length) return reply.code(404).send({ error: "This student has no grades!" });
+    return average[0];
   } catch (error) {
     return reply.code(400).send({ error: error.message });
   }

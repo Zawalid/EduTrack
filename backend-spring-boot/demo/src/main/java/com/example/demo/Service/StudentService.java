@@ -39,6 +39,16 @@ public class StudentService {
         }).orElseThrow(() -> new RuntimeException("Student not found"));
     }
 
+    public void updateAverage(long studentId, double average) {
+        repository
+                .findById(studentId)
+                .map(student -> {
+                    student.setAverage(average);
+                    return repository.save(student);
+                })
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
+
     public void deleteStudent(long id) {
         repository.deleteById(id);
     }
@@ -46,4 +56,6 @@ public class StudentService {
     public void deleteStudents(List<Long> ids) {
         repository.deleteAllById(ids);
     }
+
+
 }

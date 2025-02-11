@@ -20,5 +20,5 @@ public class Student {
     private String email;
     private String className;
     private String field;
-    private float average;
+    private double average;
 }
