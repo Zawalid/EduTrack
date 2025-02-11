@@ -62,7 +62,7 @@ const generateGrade = () => {
   return Math.round(randomFloat * 4) / 4;
 };
 
-export async function seedGrades() {
+export async function seedGrades(count = 5) {
   try {
     await Grade.deleteMany({});
     console.log("Cleared existing grades");
@@ -70,7 +70,7 @@ export async function seedGrades() {
     const grades = [];
 
     students.forEach((student) => {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < count; i++) {
         const grade = {
           student_id: student.id,
           grade: generateGrade(),

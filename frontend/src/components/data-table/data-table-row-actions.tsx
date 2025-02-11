@@ -18,8 +18,6 @@ interface DataTableRowActionsProps<TData> {
 }
 
 export function DataTableRowActions<TData>({ row, setRowAction }: DataTableRowActionsProps<TData>) {
-  console.log(row);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

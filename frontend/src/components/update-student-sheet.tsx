@@ -64,7 +64,6 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
           form.getValues("grades").updated.includes(grade._id) &&
           grade.grade !== student?.grades.find((g) => g._id === grade._id)?.grade
       );
-    console.log(updated);
     startUpdateTransition(async () => {
       if (!student) return;
 
@@ -184,7 +183,7 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
                 </Button>
               </SheetClose>
               <Button
-                disabled={isUpdatePending || !form.formState.isDirty || !form.formState.isValid}
+                disabled={isUpdatePending || !form.formState.isDirty }
               >
                 {isUpdatePending && (
                   <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />

@@ -1,4 +1,4 @@
-package com.example.demo.Entity;
+package com.example.demo.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,6 +16,7 @@ public class Student {
     private String userId;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String className;
     private String field;

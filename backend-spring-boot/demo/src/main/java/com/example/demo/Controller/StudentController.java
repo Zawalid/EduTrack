@@ -1,8 +1,11 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Entity.Student;
+import com.example.demo.Model.Student;
 import com.example.demo.Service.StudentSeedService;
 import com.example.demo.Service.StudentService;
+import com.example.demo.kafka.producer.KafkaMessageProducer;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +15,14 @@ import java.util.List;
 public class StudentController {
     private final StudentService service;
     private final StudentSeedService seedService;
+    private final KafkaMessageProducer kafkaMessageProducer;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
 
-    public StudentController(StudentService service, StudentSeedService seedService) {
+    public StudentController(StudentService service, StudentSeedService seedService, KafkaMessageProducer kafkaMessageProducer) {
         this.service = service;
         this.seedService = seedService;
+        this.kafkaMessageProducer = kafkaMessageProducer;
     }
 
     @GetMapping
@@ -41,11 +47,14 @@ public class StudentController {
 
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable long id) {
+        kafkaMessageProducer.sendMessage("student-deletion", String.valueOf(id));
         service.deleteStudent(id);
     }
 
     @DeleteMapping("/delete")
-    public void deleteStudents(@RequestBody IdsWrapper idsWrapper) {
+    public void deleteStudents(@RequestBody IdsWrapper idsWrapper) throws JsonProcessingException {
+        String ids = objectMapper.writeValueAsString(idsWrapper.getIds());
+        kafkaMessageProducer.sendMessage("student-deletion", ids);
         service.deleteStudents(idsWrapper.getIds());
     }
 
@@ -56,7 +65,7 @@ public class StudentController {
 }
 
 
- class IdsWrapper {
+class IdsWrapper {
     private List<Long> ids;
 
     public List<Long> getIds() {

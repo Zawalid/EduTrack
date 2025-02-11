@@ -1,10 +1,10 @@
 import { connectDB } from "../src/db.js";
 import { seedGrades } from "../src/utils/seed.js";
 
-export async function seed(numRecords = 10) {
+export async function seed(count = 10) {
   try {
     await connectDB();
-    await seedGrades();
+    await seedGrades(count);
     process.exit(0);
   } catch (error) {
     console.error("Error seeding data:", error);
@@ -12,5 +12,5 @@ export async function seed(numRecords = 10) {
   }
 }
 
-const numRecords = process.argv[2] ? parseInt(process.argv[2]) : 10;
-seed(numRecords);
+const count = process.argv[2] ? parseInt(process.argv[2]) : 10;
+seed(count);

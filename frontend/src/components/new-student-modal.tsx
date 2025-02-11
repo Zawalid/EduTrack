@@ -59,7 +59,7 @@ export function NewStudentModal({ fields }: { fields: string[] }) {
 
       form.reset();
       setIsOpen(false);
-      toast.success("Student created successfully");
+      toast.success("Student added successfully");
 
       await revalidate();
     });
@@ -154,7 +154,7 @@ export function NewStudentModal({ fields }: { fields: string[] }) {
                   Cancel
                 </Button>
               </DialogClose>
-                <Button disabled={!form.formState.isDirty || !form.formState.isValid || isCreatePending}>
+                <Button disabled={!form.formState.isDirty  || isCreatePending}>
                 {isCreatePending && (
                   <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />
                 )}

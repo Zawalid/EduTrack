@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import { connectDB } from "./db.js";
 import gradeRoutes from "./routes/grades.js";
 import { seedGrades } from "./utils/seed.js";
+import { deleteGradesConsumer } from "./kafka/consumers.js";
 
 // Initialization
 const fastify = Fastify({
@@ -24,7 +25,7 @@ const fastify = Fastify({
     },
   },
   genReqId() {
-    return undefined
+    return undefined;
   },
   ignoreTrailingSlash: true,
   caseSensitive: false,
@@ -50,8 +51,10 @@ const start = async () => {
   try {
     // Connect to MongoDB
     connectDB();
-    const host = await fastify.listen({ port,host: '0.0.0.0' });
+    const host = await fastify.listen({ port, host: "0.0.0.0" });
     console.log(`Server is running at ${host}`);
+    // Consumers
+    await deleteGradesConsumer();
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

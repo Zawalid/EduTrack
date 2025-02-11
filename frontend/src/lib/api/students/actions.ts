@@ -14,7 +14,7 @@ export const createStudent = async (
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(student),
     });
-    if (!response.ok) throw new Error("Failed to create student");
+    if (!response.ok) throw new Error("Failed to add student");
 
     const data: Student = await response.json();
     return { data, error: null };
