@@ -11,6 +11,9 @@ export default async function studentPage() {
   const { data: students, error } = await getAllStudents();
   const { data: grades, error: error2 } = await getAllGrades();
 
+  // TODO : Fetch types and subjects as well
+  
+
   if (error || error2) {
     return <div className="">Error</div>;
   }
