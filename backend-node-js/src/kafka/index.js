@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const kafka = new Kafka({ clientId: "edu-track-node", brokers: ["localhost:9092"] });
+const kafka = new Kafka({ clientId: "edu-track-node", brokers: [process.env.KAFKA_BROKER || "localhost:9092"] });
 
 // Producer
 const producer = kafka.producer();
@@ -24,7 +24,7 @@ export const consumeMessage = async ({ topic = "edu-track", action }) => {
   await consumer.run({
     eachMessage: async ({ message }) => {
       const value = JSON.parse(message.value.toString());
-      action ? action(value) : console.log(message,value);
+      action ? action(value) : console.log(message, value);
     },
   });
 };

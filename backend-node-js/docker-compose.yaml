@@ -10,9 +10,7 @@ services:
       - MONGODB_DB_NAME=Edu-Track
       - MONGODB_LOCAL_URI=mongodb://mongo:27017/Edu-Track
       - KAFKA_CONSUMER_GROUP_ID=edu-track-node-consumer
-      - KAFKAJS_NO_PARTITIONER_WARNING=1
-    depends_on:
-      - mongo
+      - KAFKA_BROKER=kafka:9092
     volumes:
       - .:/app
 
@@ -26,3 +24,5 @@ services:
 
 volumes:
   mongo-data:
+
+

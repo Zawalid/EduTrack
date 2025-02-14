@@ -11,13 +11,9 @@ services:
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.MySQL8Dialect
-      - MYSQL_HOST=mysql-container
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-      - SPRING.KAFKA.CONSUMER.GROUP-ID=edu-track-spring-consumer
-      - SPRING.KAFKA.CONSUMER.AUTO-OFFSET-RESET=earliest
-    depends_on:
-      mysqldb :
-        condition: service_healthy
+      - SPRING_KAFKA_CONSUMER_GROUP_ID=edu-track-spring-consumer
+      - SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET=earliest
 
   mysqldb:
     image: mysql:8.0
@@ -28,12 +24,13 @@ services:
     ports:
       - "3306:3306"
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       retries: 10
       interval: 3s
       timeout: 30s
     volumes:
-      - mysql-data:/var/lib/mysql  
+      - mysql-data:/var/lib/mysql
 
 volumes:
   mysql-data:
+
