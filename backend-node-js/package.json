@@ -1,7 +1,8 @@
 {
-  "name": "backend-node-js",
+  "name": "backend-node",
   "version": "1.0.0",
-  "description": "",
+  "author": "Walid Zakan",
+  "description": "This is a Fastify-based REST API that manages student grades using MongoDB and Mongoose.",
   "main": "src/server.js",
   "type": "module",
   "scripts": {
@@ -11,7 +12,6 @@
     "seed": "node scripts/seed.js"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.7",

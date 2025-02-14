@@ -1,0 +1,39 @@
+services:
+  app:
+    build: .
+    container_name: edu-track-spring-boot
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://edu-track-mysql:3306/edu-track
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.MySQL8Dialect
+      - MYSQL_HOST=mysql-container
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING.KAFKA.CONSUMER.GROUP-ID=edu-track-spring-consumer
+      - SPRING.KAFKA.CONSUMER.AUTO-OFFSET-RESET=earliest
+    depends_on:
+      mysqldb :
+        condition: service_healthy
+
+  mysqldb:
+    image: mysql:8.0
+    container_name: edu-track-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: edu-track
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      retries: 10
+      interval: 3s
+      timeout: 30s
+    volumes:
+      - mysql-data:/var/lib/mysql  
+
+volumes:
+  mysql-data:

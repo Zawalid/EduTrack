@@ -54,7 +54,7 @@ const start = async () => {
     const host = await fastify.listen({ port, host: "0.0.0.0" });
     console.log(`Server is running at ${host}`);
     // Consumers
-    await deleteGradesConsumer();
+    // TODO await deleteGradesConsumer();
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

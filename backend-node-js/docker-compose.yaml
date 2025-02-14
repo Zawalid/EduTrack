@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    container_name: edu-track-node-js
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - MONGODB_DB_NAME=Edu-Track
+      - MONGODB_LOCAL_URI=mongodb://mongo:27017/Edu-Track
+      - KAFKA_CONSUMER_GROUP_ID=edu-track-node-consumer
+      - KAFKAJS_NO_PARTITIONER_WARNING=1
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app
+
+  mongo:
+    image: mongo
+    container_name: edu-track-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
