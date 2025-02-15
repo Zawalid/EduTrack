@@ -15,7 +15,8 @@ export default async function studentPage() {
   
 
   if (error || error2) {
-    return <div className="">Error</div>;
+    return <div className="">Error : 
+    </div>;
   }
 
   const studentsWithGrades = students?.map((student) => {
@@ -23,7 +24,11 @@ export default async function studentPage() {
     return { ...student, grades: studentGrades || [] };
   });
 
-  const fields = Array.from(new Set(students?.map((student) => student.field)));
+  const fields = Array.from(new Set(students?.map((student) => student.field).filter(Boolean)));
+
+
+  console.log(fields)
+  
 
   return (
     <div className="container hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">

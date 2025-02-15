@@ -7,7 +7,7 @@ services:
       mysqldb:
         condition: service_healthy
       kafka:
-        condition: service_started
+        condition: service_healthy
     networks:
       - edu-track-network
 
@@ -17,9 +17,9 @@ services:
       service: app
     depends_on:
       mongo:
-        condition: service_started
+        condition: service_healthy
       kafka:
-        condition: service_started
+        condition: service_healthy
     networks:
       - edu-track-network
 

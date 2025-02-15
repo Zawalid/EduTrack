@@ -21,6 +21,11 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo mongo:27017/Edu-Track --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 5  
 
 volumes:
   mongo-data:

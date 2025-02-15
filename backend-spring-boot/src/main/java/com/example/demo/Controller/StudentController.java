@@ -7,6 +7,7 @@ import com.example.demo.kafka.producer.KafkaMessageProducer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class StudentController {
     public ResponseEntity<Object> getStudentById(@PathVariable long id) {
         Object response = service.getStudentById(id);
         if (response instanceof ErrorResponse) {
-            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+            return ResponseEntity.status(((ErrorResponse) response).getStatusCode()).body(response);
         } else {
             return ResponseEntity.ok(response);
         }
@@ -44,7 +45,7 @@ public class StudentController {
     public ResponseEntity<Object> createStudent(@RequestBody Student student) {
         Object response = service.createStudent(student);
         if (response instanceof ErrorResponse) {
-            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+            return ResponseEntity.status(((ErrorResponse) response).getStatusCode()).body(response);
         } else {
             return ResponseEntity.status(201).body(response);
         }
@@ -54,7 +55,7 @@ public class StudentController {
     public ResponseEntity<Object> updateStudent(@PathVariable long id, @RequestBody Student student) {
         Object response = service.updateStudent(id, student);
         if (response instanceof ErrorResponse) {
-            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+            return ResponseEntity.status(((ErrorResponse) response).getStatusCode()).body(response);
         } else {
             return ResponseEntity.ok(response);
         }
@@ -65,7 +66,7 @@ public class StudentController {
         kafkaMessageProducer.sendMessage("student-deletion", String.valueOf(id));
         Object response = service.deleteStudent(id);
         if (response instanceof ErrorResponse) {
-            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+            return ResponseEntity.status(((ErrorResponse) response).getStatusCode()).body(response);
         } else {
             return ResponseEntity.ok(response);
         }
@@ -77,7 +78,7 @@ public class StudentController {
         kafkaMessageProducer.sendMessage("student-deletion", ids);
         Object response = service.deleteStudents(idsWrapper.getIds());
         if (response instanceof ErrorResponse) {
-            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+            return ResponseEntity.status(((ErrorResponse) response).getStatusCode()).body(response);
         } else {
             return ResponseEntity.ok(response);
         }
@@ -85,7 +86,7 @@ public class StudentController {
 
     @PostMapping("/seed/{count}")
     public List<Student> seedStudents(@PathVariable int count) {
-        return seedService.seedStudents(count);
+        return (List<Student>) seedService.seedStudents(count);
     }
 }
 

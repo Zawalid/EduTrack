@@ -19,7 +19,7 @@ register_route() {
   local method="$3"
   local path="$4"
 
-  curl -s -o /dev/null -X POST "http://kong-gateway:8001/services/$service/routes" \
+  curl -s -o /dev/null -X POST "http://localhost:8001/services/$service/routes" \
     --data "name=$name" \
     --data "methods[]=$method" \
     --data "paths[]=$path"

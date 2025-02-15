@@ -1,10 +1,11 @@
 "use server";
 
-const BASE_URL = "http://localhost:3001/api/grades";
+const BASE_URL = "http://localhost:3000/api/grades";
 
 export const getAllGrades = async (): Promise<{ data: Grade[] | null; error: Error | null }> => {
   try {
     const response = await fetch(`${BASE_URL}`);
+    console.log(response)
     if (!response.ok) throw new Error("Failed to fetch grades");
 
     const data = await response.json();

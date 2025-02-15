@@ -54,6 +54,6 @@ public class StudentSeedService {
 
     private void resetIdSequence() {
         // Reset the auto-increment sequence after deleting all records
-        entityManager.createNativeQuery("ALTER TABLE Students AUTO_INCREMENT = 1").executeUpdate();
+        entityManager.createNativeQuery("ALTER TABLE students AUTO_INCREMENT = 1").executeUpdate();
     }
 }
