@@ -2,9 +2,11 @@ package com.example.demo.Service;
 
 import com.example.demo.Model.Student;
 import com.example.demo.Repository.StudentRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -18,16 +20,26 @@ public class StudentService {
         return repository.findAll();
     }
 
-    public Student getStudentById(long id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+    public Object getStudentById(long id) {
+        Optional<Student> student = repository.findById(id);
+        if (student.isPresent()) {
+            return student.get();
+        } else {
+            return new ErrorResponse("Student with ID " + id + " not found", HttpStatus.NOT_FOUND.value());
+        }
     }
 
-    public Student createStudent(Student student) {
+    public Object createStudent(Student student) {
+        if (student == null) {
+            return new ErrorResponse("Invalid student data", HttpStatus.BAD_REQUEST.value());
+        }
         return repository.save(student);
     }
 
-    public Student updateStudent(long id, Student newStudent) {
-        return repository.findById(id).map(student -> {
+    public Object updateStudent(long id, Student newStudent) {
+        Optional<Student> existingStudent = repository.findById(id);
+        if (existingStudent.isPresent()) {
+            Student student = existingStudent.get();
             student.setCne(newStudent.getCne());
             student.setFirstName(newStudent.getFirstName());
             student.setLastName(newStudent.getLastName());
@@ -36,26 +48,73 @@ public class StudentService {
             student.setField(newStudent.getField());
             student.setAverage(newStudent.getAverage());
             return repository.save(student);
-        }).orElseThrow(() -> new RuntimeException("Student not found"));
+        } else {
+            return new ErrorResponse("Student with ID " + id + " not found", HttpStatus.NOT_FOUND.value());
+        }
     }
 
-    public void updateAverage(long studentId, double average) {
-        repository
-                .findById(studentId)
-                .map(student -> {
-                    student.setAverage(average);
-                    return repository.save(student);
-                })
-                .orElseThrow(() -> new RuntimeException("Student not found"));
+    public Object updateAverage(long studentId, double average) {
+        Optional<Student> student = repository.findById(studentId);
+        if (student.isPresent()) {
+            student.get().setAverage(average);
+            repository.save(student.get());
+            return new SuccessResponse("Average updated successfully for student ID " + studentId, HttpStatus.OK.value());
+        } else {
+            return new ErrorResponse("Student with ID " + studentId + " not found", HttpStatus.NOT_FOUND.value());
+        }
     }
 
-    public void deleteStudent(long id) {
-        repository.deleteById(id);
+    public Object deleteStudent(long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return new SuccessResponse("Student with ID " + id + " deleted successfully", HttpStatus.OK.value());
+        } else {
+            return new ErrorResponse("Student with ID " + id + " not found", HttpStatus.NOT_FOUND.value());
+        }
     }
 
-    public void deleteStudents(List<Long> ids) {
-        repository.deleteAllById(ids);
+    public Object deleteStudents(List<Long> ids) {
+        if (ids.isEmpty()) {
+            return new ErrorResponse("No valid student IDs provided", HttpStatus.BAD_REQUEST.value());
+        } else {
+            repository.deleteAllById(ids);
+            return new SuccessResponse("Students with the following IDs deleted: " + ids, HttpStatus.OK.value());
+        }
+    }
+}
+
+class ErrorResponse {
+    private String message;
+    private int status;
+
+    public ErrorResponse(String message, int status) {
+        this.message = message;
+        this.status = status;
     }
 
+    public String getMessage() {
+        return message;
+    }
 
+    public int getStatus() {
+        return status;
+    }
+}
+
+class SuccessResponse {
+    private String message;
+    private int status;
+
+    public SuccessResponse(String message, int status) {
+        this.message = message;
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
 }

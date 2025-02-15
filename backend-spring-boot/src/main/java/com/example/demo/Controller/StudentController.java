@@ -6,6 +6,7 @@ import com.example.demo.Service.StudentService;
 import com.example.demo.kafka.producer.KafkaMessageProducer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,6 @@ public class StudentController {
     private final StudentSeedService seedService;
     private final KafkaMessageProducer kafkaMessageProducer;
     private final ObjectMapper objectMapper = new ObjectMapper();
-
 
     public StudentController(StudentService service, StudentSeedService seedService, KafkaMessageProducer kafkaMessageProducer) {
         this.service = service;
@@ -31,31 +31,56 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable long id) {
-        return service.getStudentById(id);
+    public ResponseEntity<Object> getStudentById(@PathVariable long id) {
+        Object response = service.getStudentById(id);
+        if (response instanceof ErrorResponse) {
+            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+        } else {
+            return ResponseEntity.ok(response);
+        }
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return service.createStudent(student);
+    public ResponseEntity<Object> createStudent(@RequestBody Student student) {
+        Object response = service.createStudent(student);
+        if (response instanceof ErrorResponse) {
+            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+        } else {
+            return ResponseEntity.status(201).body(response);
+        }
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable long id, @RequestBody Student student) {
-        return service.updateStudent(id, student);
+    public ResponseEntity<Object> updateStudent(@PathVariable long id, @RequestBody Student student) {
+        Object response = service.updateStudent(id, student);
+        if (response instanceof ErrorResponse) {
+            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+        } else {
+            return ResponseEntity.ok(response);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable long id) {
+    public ResponseEntity<Object> deleteStudent(@PathVariable long id) {
         kafkaMessageProducer.sendMessage("student-deletion", String.valueOf(id));
-        service.deleteStudent(id);
+        Object response = service.deleteStudent(id);
+        if (response instanceof ErrorResponse) {
+            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+        } else {
+            return ResponseEntity.ok(response);
+        }
     }
 
     @DeleteMapping("/delete")
-    public void deleteStudents(@RequestBody IdsWrapper idsWrapper) throws JsonProcessingException {
+    public ResponseEntity<Object> deleteStudents(@RequestBody IdsWrapper idsWrapper) throws JsonProcessingException {
         String ids = objectMapper.writeValueAsString(idsWrapper.getIds());
         kafkaMessageProducer.sendMessage("student-deletion", ids);
-        service.deleteStudents(idsWrapper.getIds());
+        Object response = service.deleteStudents(idsWrapper.getIds());
+        if (response instanceof ErrorResponse) {
+            return ResponseEntity.status(((ErrorResponse) response).getStatus()).body(response);
+        } else {
+            return ResponseEntity.ok(response);
+        }
     }
 
     @PostMapping("/seed/{count}")
@@ -63,7 +88,6 @@ public class StudentController {
         return seedService.seedStudents(count);
     }
 }
-
 
 class IdsWrapper {
     private List<Long> ids;
