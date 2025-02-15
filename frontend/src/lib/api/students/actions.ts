@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { deleteGrades, updateGrade } from "../grades/actions";
 
-const BASE_URL = "http://localhost:8080/api/students";
+const BASE_URL = process.env.STUDENTS_URL
 
 export const createStudent = async (
   student: Partial<Student>

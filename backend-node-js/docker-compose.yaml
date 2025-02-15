@@ -3,10 +3,10 @@ services:
     build: .
     container_name: edu-track-node-js
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - NODE_ENV=development
-      - PORT=3000
+      - PORT=3001
       - MONGODB_DB_NAME=Edu-Track
       - MONGODB_LOCAL_URI=mongodb://mongo:27017/Edu-Track
       - KAFKA_CONSUMER_GROUP_ID=edu-track-node-consumer

@@ -1,6 +1,6 @@
 "use server";
 
-const BASE_URL = "http://localhost:3000/api/grades";
+const BASE_URL = process.env.GRADES_URL
 
 export const createGrade = async (
   grade: Grade

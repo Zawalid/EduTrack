@@ -27,7 +27,6 @@ export default async function studentPage() {
   const fields = Array.from(new Set(students?.map((student) => student.field).filter(Boolean)));
 
 
-  console.log(fields)
   
 
   return (
