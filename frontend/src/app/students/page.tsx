@@ -4,30 +4,29 @@ import { NewStudentModal } from "@/components/new-student-modal";
 import { InsertGradesDialog } from "@/components/insert-grades-dialog";
 import { getAllStudents } from "@/lib/api/students/queries";
 import { getAllGrades } from "@/lib/api/grades/queries";
+import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = { title: "Students" };
 
 export default async function studentPage() {
+  const session = await auth();
   const { data: students, error } = await getAllStudents();
   const { data: grades, error: error2 } = await getAllGrades();
 
   // TODO : Fetch types and subjects as well
-  
 
   if (error || error2) {
-    return <div className="">Error : 
-    </div>;
+    return <div className="">Error :</div>;
   }
 
-  const studentsWithGrades = students?.map((student) => {
-    const studentGrades = grades?.filter((grade) => grade.student_id === student.id);
-    return { ...student, grades: studentGrades || [] };
-  });
+  const studentsWithGrades = students
+    ?.map((student) => {
+      const studentGrades = grades?.filter((grade) => grade.student_id === student.id);
+      return { ...student, grades: studentGrades || [] };
+    })
+    .filter((student) => student.prof_id === session?.user?.id);
 
   const fields = Array.from(new Set(students?.map((student) => student.field).filter(Boolean)));
-
-
-  
 
   return (
     <div className="container hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
 import * as React from "react";
@@ -41,6 +42,7 @@ interface UpdateStudentSheetProps extends React.ComponentPropsWithRef<typeof She
 
 export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentSheetProps) {
   const [isUpdatePending, startUpdateTransition] = React.useTransition();
+  const { data: session } = useSession();
 
   const form = useForm<UpdateStudentSchema>({ resolver: zodResolver(updateStudentSchema) });
 
@@ -74,6 +76,7 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
           firstName: input.firstName,
           lastName: input.lastName,
           cne: input.cne,
+          prof_id: session?.user?.id,
           email: input.email,
           field: input.field,
           average: student.average,
@@ -182,9 +185,7 @@ export function UpdateStudentSheet({ student, fields, ...props }: UpdateStudentS
                   Cancel
                 </Button>
               </SheetClose>
-              <Button
-                disabled={isUpdatePending || !form.formState.isDirty }
-              >
+              <Button disabled={isUpdatePending || !form.formState.isDirty}>
                 {isUpdatePending && (
                   <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />
                 )}

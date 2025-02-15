@@ -3,6 +3,7 @@ import { CLASSES, SEMESTERS } from "./constants";
 
 export const studentSchema = z.object({
   id: z.number(),
+  prof_id: z.string(),
   cne: z.string().regex(/^[A-Z]\d{9}$/, "CNE must follow the format A123456789"),
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
@@ -27,7 +28,7 @@ export const gradeSchema = z.object({
     .max(20, "Grade must be less than or equal to 20"),
 });
 
-export const createStudentSchema = studentSchema.omit({ id: true, average: true });
+export const createStudentSchema = studentSchema.omit({ id: true, average: true, prof_id: true });
 
 export const updateStudentSchema = createStudentSchema.extend({
   grades: z.object({

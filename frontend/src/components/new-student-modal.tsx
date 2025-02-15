@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -35,6 +36,7 @@ import { createStudent, revalidate } from "@/lib/api/students/actions";
 export function NewStudentModal({ fields }: { fields: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isCreatePending, startCreateTransition] = useTransition();
+  const { data: session } = useSession();
 
   const form = useForm<CreateStudentSchema>({
     defaultValues: {
@@ -48,9 +50,12 @@ export function NewStudentModal({ fields }: { fields: string[] }) {
     resolver: zodResolver(createStudentSchema),
   });
 
+
+  console.log(session?.user?.id)
+
   function onSubmit(input: CreateStudentSchema) {
     startCreateTransition(async () => {
-      const { error } = await createStudent(input);
+      const { error } = await createStudent({ ...input, prof_id: session?.user?.id });
 
       if (error) {
         toast.error(error.message);
@@ -154,7 +159,7 @@ export function NewStudentModal({ fields }: { fields: string[] }) {
                   Cancel
                 </Button>
               </DialogClose>
-                <Button disabled={!form.formState.isDirty  || isCreatePending}>
+              <Button disabled={!form.formState.isDirty || isCreatePending}>
                 {isCreatePending && (
                   <Loader className="mr-2 size-4 animate-spin" aria-hidden="true" />
                 )}

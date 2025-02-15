@@ -18,6 +18,8 @@ export function UserNav() {
 
   if (!session?.user) return null;
 
+  console.log(session)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
